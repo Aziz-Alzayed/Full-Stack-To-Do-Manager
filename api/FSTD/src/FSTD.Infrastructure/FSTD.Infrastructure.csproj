@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\entities\FSTD.SqlDataCore\FSTD.SqlDataCore.csproj" />
     <ProjectReference Include="..\FSTD.Application\FSTD.Application.csproj" />
     <ProjectReference Include="..\FSTD.DataCore\FSTD.DataCore.csproj" />
   </ItemGroup>

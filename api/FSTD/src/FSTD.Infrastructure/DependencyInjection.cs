@@ -113,6 +113,10 @@ namespace FSTD.Infrastructure
             //Adding JWT authentication and Validation.
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             var jwtTokenConfig = configuration.GetSection("jwtTokenConfig").Get<JwtTokenConfigModel>();
+            if (jwtTokenConfig == null)
+            {
+                throw new ArgumentNullException(nameof(jwtTokenConfig), "JWT configuration is missing");
+            }
             services.AddSingleton(jwtTokenConfig);
             services.AddAuthentication(options =>
             {
