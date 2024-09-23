@@ -4,7 +4,7 @@ namespace FSTD.DataCore.Models.JwtModels
 {
     public class JwtTokenConfigModel
     {
-        [JsonPropertyName("aecretKey")]
+        [JsonPropertyName("secretKey")]
         public string SecretKey { get; set; }
 
         [JsonPropertyName("issuer")]
