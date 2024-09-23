@@ -1,0 +1,33 @@
+name: Main CI/CD Workflow for UI
+
+on:
+  workflow_dispatch:   # Enables manual triggering of the workflow
+  pull_request:
+    branches:
+      - main
+      - "ui/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "ui/**"
+
+jobs:
+  # Build job for pull request and on merge to main
+  build:
+    uses: ./.github/workflows/reuse-build-ui.yml  # Reuse the CI workflow
+    with:
+      working_directory_path: './ui'     # Directory for the frontend
+      repository_name: ${{ secrets.ACR_UI_REPO_NAME }}  # Docker repository name from GitHub Secrets
+    secrets: inherit
+
+  # Deploy job - runs only when code is merged to main (push)
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    needs: build
+    uses: ./.github/workflows/reuse-deploy-ui.yml  # Reuse the CD workflow
+    with:
+      azure_webapp_name: ${{ secrets.AZURE_UI_WEBAPP_NAME }}  # Azure Web App name from GitHub Secrets
+      image_tag: ${{ github.run_number }}                  # Use the GitHub run number as the tag
+      repo_name: ${{ secrets.ACR_UI_REPO_NAME }}              # Docker repository name from GitHub Secrets
+    secrets: inherit
