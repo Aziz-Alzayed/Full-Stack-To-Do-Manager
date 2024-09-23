@@ -1,18 +1,27 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
+# Base image with Azure Functions runtime for isolated mode
 FROM mcr.microsoft.com/azure-functions/dotnet-isolated:4-dotnet-isolated8.0 AS base
 WORKDIR /home/site/wwwroot
 EXPOSE 8080
 
+# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["FSTD.SeedResetTrigger/FSTD.SeedResetTrigger.csproj", "FSTD.SeedResetTrigger/"]
-RUN dotnet restore "./FSTD.SeedResetTrigger/FSTD.SeedResetTrigger.csproj"
-COPY . .
-WORKDIR "/src/FSTD.SeedResetTrigger"
-RUN dotnet build "./FSTD.SeedResetTrigger.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
+# Copy all project files to their respective directories
+COPY services/FSTD.TimerTriggers/FSTD.SeedResetTrigger/FSTD.SeedResetTrigger.csproj FSTD.SeedResetTrigger/
+
+# Restore dependencies for all projects
+RUN dotnet restore FSTD.SeedResetTrigger/FSTD.SeedResetTrigger.csproj
+
+# Copy all source files
+COPY services/FSTD.TimerTriggers/FSTD.SeedResetTrigger/ FSTD.SeedResetTrigger/
+
+# Build the project
+WORKDIR "/src/FSTD.SeedResetTrigger"
+RUN dotnet build "FSTD.SeedResetTrigger.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# Publish the project
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./FSTD.SeedResetTrigger.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
