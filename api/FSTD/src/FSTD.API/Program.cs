@@ -75,7 +75,6 @@ void Services(WebApplicationBuilder builder)
 void LogConfiguration(IConfiguration configuration, IServiceCollection services)
 {
     var serviceProvider = services.BuildServiceProvider();
-    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
 
     // Enumerate all configuration keys and values
     foreach (var kvp in configuration.AsEnumerable())
@@ -88,11 +87,11 @@ void LogConfiguration(IConfiguration configuration, IServiceCollection services)
             key.Contains("Secret", StringComparison.OrdinalIgnoreCase) ||
             key.Contains("Key", StringComparison.OrdinalIgnoreCase))
         {
-            logger.LogInformation("{Key}=[REDACTED]", key);
+            Console.WriteLine("{Key}=[REDACTED]", key);
         }
         else
         {
-            logger.LogInformation("{Key}={Value}", key, value);
+            Console.WriteLine("{Key}={Value}", key, value);
         }
     }
 }
