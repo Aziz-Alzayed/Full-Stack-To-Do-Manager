@@ -48,10 +48,8 @@ WebApplicationBuilder CreateWebApplicationBuilder()
 {
     var builder = WebApplication.CreateBuilder(args);
     Logging(builder);
-    LogConfiguration(builder.Configuration, builder.Services);
     Services(builder);
     Configuration(builder);
-
     return builder;
 }
 
@@ -71,27 +69,4 @@ void Logging(WebApplicationBuilder builder)
 void Services(WebApplicationBuilder builder)
 {
     builder.Services.AddScoped<ApiKeyAuthAttribute>();
-}
-void LogConfiguration(IConfiguration configuration, IServiceCollection services)
-{
-    var serviceProvider = services.BuildServiceProvider();
-
-    // Enumerate all configuration keys and values
-    foreach (var kvp in configuration.AsEnumerable())
-    {
-        var key = kvp.Key;
-        var value = kvp.Value;
-
-        // Skip sensitive configuration keys
-        if (key.Contains("Password", StringComparison.OrdinalIgnoreCase) ||
-            key.Contains("Secret", StringComparison.OrdinalIgnoreCase) ||
-            key.Contains("Key", StringComparison.OrdinalIgnoreCase))
-        {
-            Console.WriteLine("{Key}=[REDACTED]", key);
-        }
-        else
-        {
-            Console.WriteLine("{Key}={Value}", key, value);
-        }
-    }
 }
