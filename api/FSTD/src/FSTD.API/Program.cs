@@ -2,7 +2,6 @@
 using FSTD.API.ApiAttributes;
 using FSTD.API.Middlewares;
 using FSTD.Infrastructure;
-using System.Collections;
 
 var app = CreateWebApplicationBuilder().Build();
 app.UseMiddleware<RequestLoggingMiddleware>();
@@ -49,7 +48,7 @@ WebApplicationBuilder CreateWebApplicationBuilder()
 {
     var builder = WebApplication.CreateBuilder(args);
     Logging(builder);
-    LogEnvironmentVariables(builder.Services);
+    LogConfiguration(builder.Configuration, builder.Services);
     Services(builder);
     Configuration(builder);
 
@@ -73,21 +72,21 @@ void Services(WebApplicationBuilder builder)
 {
     builder.Services.AddScoped<ApiKeyAuthAttribute>();
 }
-void LogEnvironmentVariables(IServiceCollection services)
+void LogConfiguration(IConfiguration configuration, IServiceCollection services)
 {
     var serviceProvider = services.BuildServiceProvider();
     var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
 
-    var envVariables = Environment.GetEnvironmentVariables();
-    foreach (DictionaryEntry env in envVariables)
+    // Enumerate all configuration keys and values
+    foreach (var kvp in configuration.AsEnumerable())
     {
-        var key = env.Key.ToString();
-        var value = env.Value.ToString();
+        var key = kvp.Key;
+        var value = kvp.Value;
 
-        // Skip sensitive environment variables
-        if (key.Contains("PASSWORD", StringComparison.OrdinalIgnoreCase) ||
-            key.Contains("SECRET", StringComparison.OrdinalIgnoreCase) ||
-            key.Contains("KEY", StringComparison.OrdinalIgnoreCase))
+        // Skip sensitive configuration keys
+        if (key.Contains("Password", StringComparison.OrdinalIgnoreCase) ||
+            key.Contains("Secret", StringComparison.OrdinalIgnoreCase) ||
+            key.Contains("Key", StringComparison.OrdinalIgnoreCase))
         {
             logger.LogInformation("{Key}=[REDACTED]", key);
         }
