@@ -1,0 +1,9 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "SeedApiKey": "cT!D8@pKF_6Jr-gJ91F]B}XH-hp9u]@BeqV]9aj50Q>:c~zx1gt3QCQ4wjwiqz)oM3G0pDeE",
+    "SeedResetEndpoint": "https://localhost:7299/api/Seed"
+  }
+}
