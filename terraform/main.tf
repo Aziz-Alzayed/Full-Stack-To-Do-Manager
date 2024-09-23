@@ -84,20 +84,6 @@ module "fstd_trigger_function_app" {
 }
 
 
-# Outputs from the function app
-output "function_app_id" {
-  value = module.fstd_trigger_function_app.function_app_id
-}
-
-output "function_app_url" {
-  value = module.fstd_trigger_function_app.function_app_url
-}
-
-output "function_app_default_hostname" {
-  value = module.fstd_trigger_function_app.function_app_default_hostname
-}
-
-
 module "fstd_sql_server" {
   source              = "./modules/sql_server"
   name                = local.sql_server_name
