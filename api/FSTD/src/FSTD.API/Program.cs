@@ -2,6 +2,7 @@
 using FSTD.API.ApiAttributes;
 using FSTD.API.Middlewares;
 using FSTD.Infrastructure;
+using System.Collections;
 
 var app = CreateWebApplicationBuilder().Build();
 app.UseMiddleware<RequestLoggingMiddleware>();
@@ -50,6 +51,7 @@ WebApplicationBuilder CreateWebApplicationBuilder()
     Logging(builder);
     Services(builder);
     Configuration(builder);
+    LogEnvironmentVariables(builder.Services);
     return builder;
 }
 
@@ -69,4 +71,28 @@ void Logging(WebApplicationBuilder builder)
 void Services(WebApplicationBuilder builder)
 {
     builder.Services.AddScoped<ApiKeyAuthAttribute>();
+}
+void LogEnvironmentVariables(IServiceCollection services)
+{
+    var serviceProvider = services.BuildServiceProvider();
+    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+
+    var envVariables = Environment.GetEnvironmentVariables();
+    foreach (DictionaryEntry env in envVariables)
+    {
+        var key = env.Key.ToString();
+        var value = env.Value.ToString();
+
+        // Skip sensitive environment variables
+        if (key.Contains("PASSWORD", StringComparison.OrdinalIgnoreCase) ||
+            key.Contains("SECRET", StringComparison.OrdinalIgnoreCase) ||
+            key.Contains("KEY", StringComparison.OrdinalIgnoreCase))
+        {
+            logger.LogInformation("{Key}=[REDACTED]", key);
+        }
+        else
+        {
+            logger.LogInformation("{Key}={Value}", key, value);
+        }
+    }
 }
