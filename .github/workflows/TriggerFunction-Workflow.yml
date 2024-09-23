@@ -25,7 +25,7 @@ jobs:
   set-vars:
     runs-on: ubuntu-latest
     outputs:
-      repository_name: "triggerFunction"   # Setting repository name for the build job
+      repository_name: "trigger-function"   # Setting repository name for the build job
       azure_webapp_name: "fstd-app-service-trigger-function"  # Setting the Azure web app name
       filePath: "services/FSTD.TimerTriggers"
 

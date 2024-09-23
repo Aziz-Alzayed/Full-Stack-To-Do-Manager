@@ -6,7 +6,7 @@ on:
     branches:
       - "main"
     paths:
-      - "api/**"   # Trigger only when changes happen in the "api" directory
+      - "api/FSTD/**"   # Trigger only when changes happen in the "api" directory
   
   # Trigger the workflow on push to the main branch or when a tag like 'api-v*' is created
   push:
@@ -15,7 +15,7 @@ on:
     tags:
       - 'api-v*'
     paths:
-      - "api/**"   # Trigger only when changes happen in the "api" directory
+      - "api/FSTD/**"   # Trigger only when changes happen in the "api" directory
 
   # Allow manually triggering the workflow
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
     outputs:
       repository_name: "api"   # Setting repository name for the build job
       azure_webapp_name: "fstd-app-service-backend"  # Setting the Azure web app name
-      filePath: "api"
+      filePath: "api/FSTD"
 
     steps:
       - name: Set environment variables
