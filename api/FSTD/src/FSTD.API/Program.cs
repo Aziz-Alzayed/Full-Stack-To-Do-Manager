@@ -49,9 +49,10 @@ WebApplicationBuilder CreateWebApplicationBuilder()
 {
     var builder = WebApplication.CreateBuilder(args);
     Logging(builder);
+    LogEnvironmentVariables(builder.Services);
     Services(builder);
     Configuration(builder);
-    LogEnvironmentVariables(builder.Services);
+
     return builder;
 }
 
