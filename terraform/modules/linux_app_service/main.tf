@@ -3,7 +3,7 @@ resource "azurerm_linux_web_app" "linux_app_service" {
   location            = var.location
   resource_group_name = var.resource_group_name
   service_plan_id     = var.service_plan_id
-
+  tags = var.tags
   app_settings = {
     "ASPNETCORE_ENVIRONMENT"       = var.ASPNETCORE_ENVIRONMENT
     "DOCKER_REGISTRY_SERVER_URL"   = var.docker_registry_server_url
@@ -15,10 +15,13 @@ resource "azurerm_linux_web_app" "linux_app_service" {
 
   site_config {
     application_stack {
-        docker_image            = var.docker_image        
-        docker_image_tag        = var.docker_image_tag    
+        docker_image            = var.docker_image
+        docker_image_tag        = var.docker_image_tag
     }
   }
 
-  tags = var.tags
+  identity {
+    type = "SystemAssigned"  # This enables system-assigned managed identity
+  }
+
 }

@@ -1,11 +1,8 @@
-# main.tf
-
-# Create a Linux App Service Plan
 resource "azurerm_service_plan" "app_service_plan" {
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  os_type             = var.os_type
-  sku_name            = var.sku_name
-  tags = var.tags
+  name                 = var.name
+  location              = var.location
+  resource_group_name   = var.resource_group_name
+  os_type               = var.os_type
+  sku_name              = var.sku_name
+  tags                  = var.tags
 }

@@ -48,6 +48,11 @@ variable "docker_image" {
   type        = string
 }
 
+variable "docker_image_tag" {
+  description = "The Docker tag for the Function App"
+  type        = string
+}
+
 variable "tags" {
   description = "A map of tags to assign to the Function App"
   type        = map(string)

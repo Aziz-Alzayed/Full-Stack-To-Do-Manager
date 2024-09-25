@@ -15,8 +15,20 @@ locals {
     ManagedBy   = "Terraform"
   }
 
-  frontend_docker_image     = "fstdacr.azurecr.io/frontend"
-  frontend_docker_image_tag = "latest"
-  backend_docker_image      = "fstdacr.azurecr.io/backend"
-  backend_docker_image_tag  = "latest"
+  docker_registry_url = "fstdacr.azurecr.io"
+
+  docker_images = {
+    frontend = {
+      image = "${local.docker_registry_url}/frontend"
+      tag   = "latest"
+    }
+    backend = {
+      image = "${local.docker_registry_url}/backend"
+      tag   = "latest"
+    }
+    function_trigger = {
+      image = "${local.docker_registry_url}/trigger-function"
+      tag   = "latest"
+    }
+  }
 }
