@@ -17,8 +17,11 @@ jobs:
   build:
     uses: ./.github/workflows/reuse-build-ui.yml  # Reuse the CI workflow
     with:
-      working_directory_path: './ui'     # Directory for the frontend
-    secrets: inherit
+      working_directory_path: './ui'               # Directory for the frontend
+      repository_name: "fstd-ui" # Use the repository name for ACR
+      UI_BackEnd_API_URL: "https://fstd-app-service-backend.azurewebsites.net/api" # Backend API URL for build argument
+    secrets:
+      inherit
 
   # Deploy job - runs only when code is merged to main (push)
   deploy:

@@ -1,15 +1,15 @@
-# Required Inputs:
-# - dockerfile_path: Path to the Dockerfile.
-# - acr_login_server: The login server name of your Azure Container Registry.
-# - acr_username: The username for your Azure Container Registry.
-# - acr_password: The password for your Azure Container Registry.
-# - repository_name: The name of the repository in your Azure Container Registry.
 name: Reusable Build and Test UI Docker Project
 
 on:
   workflow_call:
     inputs:
       working_directory_path:
+        required: true
+        type: string
+      repository_name:
+        required: true
+        type: string
+      UI_BackEnd_API_URL:
         required: true
         type: string
 
@@ -39,11 +39,11 @@ jobs:
       - name: Build the Docker image
         run: |
           docker build \
-            --build-arg VITE_API_URL=${{ secrets.UI_BackEnd_API_URL }} \
-            -t ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_UI_REPO_NAME }}:${{ github.run_number }} .
+            --build-arg VITE_API_URL=${{ inputs.UI_BackEnd_API_URL }} \
+            -t ${{ secrets.ACR_LOGIN_SERVER }}/${{ inputs.repository_name }}:${{ github.run_number }} .
 
       - name: Log in to ACR
         run: echo ${{ secrets.ACR_PASSWORD }} | docker login ${{ secrets.ACR_LOGIN_SERVER }} -u ${{ secrets.ACR_USERNAME }} --password-stdin
 
       - name: Push Docker image to ACR
-        run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_UI_REPO_NAME }}:${{ github.run_number }}
+        run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ inputs.repository_name }}:${{ github.run_number }}
