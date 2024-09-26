@@ -18,7 +18,6 @@ jobs:
       repository_name: "fstd-backend"   # Setting repository name for the build job
       azure_webapp_name: "fstd-app-service-backend"  # Setting the Azure web app name
       filePath: "api/FSTD"
-
     steps:
       - name: Set environment variables
         run: echo "Repository name and Azure web app name set."

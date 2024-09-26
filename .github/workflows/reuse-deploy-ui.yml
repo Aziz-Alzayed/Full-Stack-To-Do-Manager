@@ -3,15 +3,20 @@
 # - image_tag: The tag of the image to be deployed.
 # - repo_name: The name of the repository in Azure Container Registry.
 
-name: Reusable Deploy UI Docker Project
+name: Reusable Deploy .Net Docker Project
 
 on:
   workflow_call:
     inputs:
+      azure_webapp_name:
+        required: true
+        type: string
       image_tag:
         required: true
         type: string
-
+      repo_name:
+        required: true
+        type: string
 
 jobs:
   deploy:
@@ -28,5 +33,5 @@ jobs:
       - name: Deploy to Azure Service (Direct)
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ secrets.AZURE_UI_WEBAPP_NAME }}
-          images: ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_UI_REPO_NAME }}:${{ inputs.image_tag }}
+          app-name: ${{ inputs.azure_webapp_name }}
+          images: ${{ secrets.ACR_LOGIN_SERVER }}/${{ inputs.repo_name }}:${{ inputs.image_tag }}
