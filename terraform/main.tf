@@ -48,7 +48,7 @@ module "fstd_frontend_app_service" {
   resource_group_name             = module.resource_group.name
   location                        = module.resource_group.location
   service_plan_id                 = module.fstd_service_plan.app_service_plan_id
-  docker_registry_server_url      = module.fstd_container_registry.acr_login_server
+  docker_registry_server_url      = "https://${module.fstd_container_registry.acr_login_server}"
   docker_registry_server_username = module.fstd_container_registry.acr_admin_username
   docker_registry_server_password = module.fstd_container_registry.acr_admin_password
   docker_image                    = local.docker_images.frontend.image
@@ -65,7 +65,7 @@ module "fstd_backend_app_service" {
   resource_group_name             = module.resource_group.name
   location                        = module.resource_group.location
   service_plan_id                 = module.fstd_service_plan.app_service_plan_id
-  docker_registry_server_url      = module.fstd_container_registry.acr_login_server
+  docker_registry_server_url      = "https://${module.fstd_container_registry.acr_login_server}"
   docker_registry_server_username = module.fstd_container_registry.acr_admin_username
   docker_registry_server_password = module.fstd_container_registry.acr_admin_password
   docker_image                    = local.docker_images.backend.image
@@ -84,7 +84,7 @@ module "fstd_trigger_function_app" {
   service_plan_id                 = module.fstd_service_plan.app_service_plan_id
   storage_account_name            = module.fstd_storage_account.storage_account_name
   storage_account_access_key      = module.fstd_storage_account.storage_account_access_key
-  docker_registry_server_url      = module.fstd_container_registry.acr_login_server
+  docker_registry_server_url      = "https://${module.fstd_container_registry.acr_login_server}"
   docker_registry_server_username = module.fstd_container_registry.acr_admin_username
   docker_registry_server_password = module.fstd_container_registry.acr_admin_password
   docker_image                    = local.docker_images.function_trigger.image
@@ -117,11 +117,3 @@ module "fstd_sql_db" {
   depends_on  = [module.fstd_sql_server]
 }
 
-# Assigning RBAC role after the backend app service is created
-module "rg_sql_access" {
-  source       = "./modules/rbac_role_assignment"
-  principal_id = module.fstd_backend_app_service.identity_principal_id
-  role_name    = "SQL DB Contributor"
-  scope        = module.resource_group.id
-  depends_on   = [module.fstd_backend_app_service]
-}

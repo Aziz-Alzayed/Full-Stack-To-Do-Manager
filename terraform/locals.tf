@@ -15,19 +15,18 @@ locals {
     ManagedBy   = "Terraform"
   }
 
-  docker_registry_url = "fstdacr.azurecr.io"
 
   docker_images = {
     frontend = {
-      image = "${local.docker_registry_url}/frontend"
+      image = "frontend"
       tag   = "latest"
     }
     backend = {
-      image = "${local.docker_registry_url}/backend"
+      image = "backend"
       tag   = "latest"
     }
     function_trigger = {
-      image = "${local.docker_registry_url}/trigger-function"
+      image = "trigger-function"
       tag   = "latest"
     }
   }
