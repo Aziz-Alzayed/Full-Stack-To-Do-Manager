@@ -39,9 +39,8 @@ jobs:
       run: terraform init
       working-directory: ./terraform
 
-    # Conditional step for CI (build): only run Terraform Plan on pull request
+    # CI (build)
     - name: Terraform Plan
-      if: github.event_name == 'pull_request'
       run: terraform plan -input=false
       working-directory: ./terraform
 

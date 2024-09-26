@@ -14,6 +14,37 @@ module "resource_group" {
   tags     = local.common_tags
 }
 
+module "wait_after_resource_group" {
+  source   = "../modules/time_sleep"
+  duration = "20s" 
+  depends_on = [module.resource_group]
+}
+
+
+module "require_tags_policy" {
+  source = "../modules/policy"
+  scope  = module.resource_group.id
+}
+
+module "wait_after_tags_policy" {
+  source   = "../modules/time_sleep"
+  duration = "20s" 
+  depends_on = [module.require_tags_policy]
+}
+
+module "fstd_storage_account" {
+  source              = "../modules/storage_account"
+  name                = local.storage_account_name
+  resource_group_name = local.resource_group_name
+  location            = local.location
+  tags                = local.common_tags
+}
+
+module "wait_after_storage_account" {
+  source   = "../modules/time_sleep"
+  duration = "20s" 
+  depends_on = [module.fstd_storage_account]
+}
 module "fstd_container_registry" {
   source              = "../modules/container_registry"
   acr_name            = "fstdsacr"
@@ -65,13 +96,7 @@ module "fstd_backend_app_service" {
   tags                            = local.common_tags
 }
 
-module "fstd_storage_account" {
-  source              = "../modules/storage_account"
-  name                = local.storage_account_name
-  resource_group_name = local.resource_group_name
-  location            = local.location
-  tags                = local.common_tags
-}
+
 
 module "fstd_trigger_function_app" {
   source                          = "../modules/function_app"
@@ -109,6 +134,11 @@ module "fstd_sql_db" {
   tags        = local.common_tags
 }
 
+module "wait_after_rg" {
+  source   = "../modules/time_sleep"
+  duration = "20s" 
+}
+
 module "rg_sql_access" {
   source       = "../modules/rbac_role_assignment"
   principal_id = module.fstd_backend_app_service.identity_principal_id
@@ -116,7 +146,3 @@ module "rg_sql_access" {
   scope        = module.resource_group.id
 }
 
-module "require_tags_policy" {
-  source = "../modules/policy"
-  scope  = module.resource_group.id
-}
