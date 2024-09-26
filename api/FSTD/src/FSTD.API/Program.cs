@@ -15,22 +15,21 @@ if (app.Environment.IsDevelopment())
                .AllowAnyHeader()
                .AllowAnyMethod());
 
-
-}
-else
-{
-    //// In other environments, use the configured allowed origins
-    //var allowedOrigins = app.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
-    //app.UseCors(builder =>
-    //    builder.WithOrigins(allowedOrigins)
-    //           .AllowAnyMethod()
-    //           .AllowAnyHeader());
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "FSTD API V1");
         app.InitializeDatabase(); // Ensure database is initialized in development
     });
+}
+else
+{
+    // In other environments, use the configured allowed origins
+    var allowedOrigins = app.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
+    app.UseCors(builder =>
+        builder.WithOrigins(allowedOrigins)
+               .AllowAnyMethod()
+               .AllowAnyHeader());
 }
 app.UseRouting();
 app.UseHttpsRedirection();
