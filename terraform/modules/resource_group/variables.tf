@@ -11,3 +11,9 @@ variable "tags" {
   description = "A mapping of tags to assign to the resource group"
   default     = {}
 }
+
+variable "wait_duration" {
+  description = "Duration to wait after creating the resource group."
+  type        = string
+  default     = "20s"  # Default duration, can be overridden when calling the module
+}
