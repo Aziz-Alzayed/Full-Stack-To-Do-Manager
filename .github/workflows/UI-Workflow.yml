@@ -14,7 +14,7 @@ jobs:
     outputs:
       repository_name: "fstd-frontend"   # Setting repository name for the build job
       UI_BackEnd_API_URL: "https://fstd-app-service-backend.azurewebsites.net/api"  # Setting the Azure web app name
-      filePath: "ui"
+      filePath: "./ui"
       azure_webapp_name: "fstd-app-service-frontend"
     steps:
         - name: Set environment variables
