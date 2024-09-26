@@ -25,7 +25,9 @@ jobs:
     needs: set-vars 
     uses: ./.github/workflows/reuse-build-ui.yml  # Reuse the CI workflow
     with:
-      working_directory_path: ${{needs.set-vars.outputs.filePath}}'               # Directory for the frontend
+      repository_name: ${{ needs.set-vars.outputs.repository_name }}
+      working_directory_path: ${{needs.set-vars.outputs.filePath}}'
+      UI_BackEnd_API_URL: ${{needs.set-vars.outputs.UI_BackEnd_API_URL}}'
     secrets:
       inherit
 
