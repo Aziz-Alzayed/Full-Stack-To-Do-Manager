@@ -7,13 +7,6 @@ module "resource_group" {
   wait_duration = "30s"
 }
 
-# Policy depends on the Resource Group creation
-module "require_tags_policy" {
-  source = "./modules/policy"
-  scope  = module.resource_group.id
-  depends_on = [module.resource_group]
-}
-
 # Storage Account depends on the Resource Group
 module "fstd_storage_account" {
   source              = "./modules/storage_account"
