@@ -18,15 +18,15 @@ locals {
 
   docker_images = {
     frontend = {
-      image = "frontend"
+      image = "fstd-frontend"
       tag   = "latest"
     }
     backend = {
-      image = "backend"
+      image = "fstd-backend"
       tag   = "latest"
     }
     function_trigger = {
-      image = "trigger-function"
+      image = "fstd-trigger-function"
       tag   = "latest"
     }
   }

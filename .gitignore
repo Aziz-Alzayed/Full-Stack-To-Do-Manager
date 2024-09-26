@@ -397,3 +397,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /api/FSTD/src/FSTD.API/appsettings.Development.json
+/services/FSTD.TimerTriggers/FSTD.SeedResetTrigger/local.settings.json

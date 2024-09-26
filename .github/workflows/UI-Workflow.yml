@@ -1,11 +1,7 @@
 name: CI/CD Workflow for UI
 
 on:
-  workflow_dispatch:   # Enables manual triggering of the workflow
-  pull_request:
-    branches:
-      - main
-      - "ui/**"
+  # Trigger the workflow only on push to the main branch (for merges)
   push:
     branches:
       - main
@@ -13,21 +9,34 @@ on:
       - "ui/**"
 
 jobs:
-  # Build job for pull request and on merge to main
+  # Step 1: Set environment variables
+  set-vars:
+    runs-on: ubuntu-latest
+    outputs:
+      repository_name: "fstd-frontend"   # Setting repository name for the build job
+      azure_webapp_name: "fstd-app-service-frontend"  # Setting the Azure web app name
+      filePath: './ui'
+      UI_BackEnd_API_URL: "https://fstd-app-service-backend.azurewebsites.net/api" # Backend API URL for build argument
+
+    steps:
+      - name: Set environment variables
+        run: echo "Repository name, Azure web app name, and Backend API URL set."
+
+  # Build job for the UI on push to main
   build:
+    needs: set-vars  # Depends on 'set-vars' job
     uses: ./.github/workflows/reuse-build-ui.yml  # Reuse the CI workflow
     with:
-      working_directory_path: './ui'               # Directory for the frontend
-      repository_name: "fstd-ui" # Use the repository name for ACR
-      UI_BackEnd_API_URL: "https://fstd-app-service-backend.azurewebsites.net/api" # Backend API URL for build argument
-    secrets:
-      inherit
+      working_directory_path: ${{ needs.set-vars.outputs.filePath }}  # Directory for the frontend
+      repository_name: ${{ needs.set-vars.outputs.repository_name }}  # Repository name for ACR
+      UI_BackEnd_API_URL: ${{ needs.set-vars.outputs.UI_BackEnd_API_URL }}  # Backend API URL for build argument
+    secrets: inherit  # Inherit ACR credentials
 
   # Deploy job - runs only when code is merged to main (push)
   deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
-    needs: build
+    needs: [set-vars, build]  # Depends on 'set-vars' and 'build' jobs
     uses: ./.github/workflows/reuse-deploy-ui.yml  # Reuse the CD workflow
-    with: # Azure Web App name from GitHub Secrets
-      image_tag: ${{ github.run_number }}        # Use the GitHub run number as the tag
-    secrets: inherit
+    with:
+      azure_webapp_name: ${{ needs.set-vars.outputs.azure_webapp_name }}  # Azure web app name from 'set-vars'
+      image_tag: ${{ github.run_number }}  # Use the GitHub run number as the tag
+    secrets: inherit  # Inherit Azure credentials

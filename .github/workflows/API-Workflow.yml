@@ -1,31 +1,19 @@
 name: CI/CD Pipeline API
 
 on:
-  # Trigger the workflow on pull requests to the main branch
-  pull_request:
-    branches:
-      - "main"
-    paths:
-      - "api/FSTD/**"   # Trigger only when changes happen in the "api" directory
-  
-  # Trigger the workflow on push to the main branch or when a tag like 'api-v*' is created
+  # Trigger the workflow on push to the main branch (only on merges)
   push:
     branches:
       - main
-    tags:
-      - 'api-v*'
     paths:
       - "api/FSTD/**"   # Trigger only when changes happen in the "api" directory
-
-  # Allow manually triggering the workflow
-  workflow_dispatch:
 
 jobs:
   # Step 1: Set environment variables
   set-vars:
     runs-on: ubuntu-latest
     outputs:
-      repository_name: "api"   # Setting repository name for the build job
+      repository_name: "fstd-backend"   # Setting repository name for the build job
       azure_webapp_name: "fstd-app-service-backend"  # Setting the Azure web app name
       filePath: "api/FSTD"
 

@@ -1,10 +1,3 @@
-# Required Inputs:
-# - dockerfile_path: Path to the Dockerfile.
-# - acr_login_server: The login server name of your Azure Container Registry.
-# - acr_username: The username for your Azure Container Registry.
-# - acr_password: The password for your Azure Container Registry.
-# - repository_name: The name of the repository in your Azure Container Registry.
-# - env: "prd" | "dev"
 name: Reusable Build and Test .Net Docker Project
 
 on:
@@ -22,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ${{inputs.working_directory_path}}
+        working-directory: ${{ inputs.working_directory_path }}
     
     steps:
       - name: Checkout code
@@ -46,11 +39,16 @@ jobs:
         run: dotnet test --no-build --configuration Release --collect "Code Coverage"
 
       - name: Build Docker image
-        run: docker build -f ${{ inputs.working_directory_path }}/Dockerfile -t ${{ secrets.ACR_LOGIN_SERVER }}/${{ inputs.repository_name }}:${{ github.run_number }} .
+        run: |
+          docker build -f ${{ inputs.working_directory_path }}/Dockerfile \
+            -t ${{ secrets.ACR_LOGIN_SERVER }}/${{ inputs.repository_name }}:${{ github.run_number }} \
+            -t ${{ secrets.ACR_LOGIN_SERVER }}/${{ inputs.repository_name }}:latest .
         working-directory: ./
 
       - name: Log in to ACR
         run: echo ${{ secrets.ACR_PASSWORD }} | docker login ${{ secrets.ACR_LOGIN_SERVER }} -u ${{ secrets.ACR_USERNAME }} --password-stdin
 
       - name: Push Docker image to ACR
-        run: docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ inputs.repository_name }}:${{ github.run_number }}
+        run: |
+          docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ inputs.repository_name }}:${{ github.run_number }}
+          docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ inputs.repository_name }}:latest

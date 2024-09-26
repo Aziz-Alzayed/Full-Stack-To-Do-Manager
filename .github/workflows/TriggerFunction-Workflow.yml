@@ -1,31 +1,19 @@
 name: CI/CD Pipeline Trigger Function
 
 on:
-  # Trigger the workflow on pull requests to the main branch
-  pull_request:
-    branches:
-      - "main"
-    paths:
-      - "services/FSTD.TimerTriggers/**"   # Trigger only when changes happen in the "triggerFunction" directory
-  
-  # Trigger the workflow on push to the main branch or when a tag like 'triggerFunction-v*' is created
+  # Trigger the workflow on push to the main branch (only on merges)
   push:
     branches:
       - main
-    tags:
-      - 'triggerFunction-v*'
     paths:
       - "services/FSTD.TimerTriggers/**"   # Trigger only when changes happen in the "triggerFunction" directory
-
-  # Allow manually triggering the workflow
-  workflow_dispatch:
 
 jobs:
   # Step 1: Set environment variables
   set-vars:
     runs-on: ubuntu-latest
     outputs:
-      repository_name: "trigger-function"   # Setting repository name for the build job
+      repository_name: "fstd-trigger-function"   # Setting repository name for the build job
       azure_webapp_name: "fstd-app-service-trigger-function"  # Setting the Azure web app name
       filePath: "services/FSTD.TimerTriggers"
 

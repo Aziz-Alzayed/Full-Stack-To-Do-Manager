@@ -6,10 +6,10 @@ resource "azurerm_linux_web_app" "linux_app_service" {
 
   site_config {
     application_stack {
-      docker_image_name            = "${var.docker_registry_server_url}/${var.docker_image}:${var.docker_image_tag}"
-      docker_registry_url     = var.docker_registry_server_url
-      docker_registry_username = var.docker_registry_server_username
-      docker_registry_password = var.docker_registry_server_password
+      docker_image_name            = "${var.docker_image}:${var.docker_image_tag}"
+      docker_registry_url          = var.docker_registry_server_url
+      docker_registry_username     = var.docker_registry_server_username
+      docker_registry_password     = var.docker_registry_server_password
     }
   }
 
