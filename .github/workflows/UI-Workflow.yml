@@ -1,4 +1,4 @@
-name: Main CI/CD Workflow for UI
+name: CI/CD Workflow for UI
 
 on:
   workflow_dispatch:   # Enables manual triggering of the workflow
