@@ -7,6 +7,8 @@ on:
       - main
     paths:
       - "services/FSTD.TimerTriggers/**"   # Trigger only when changes happen in the "triggerFunction" directory
+  # Allow manually triggering the workflow
+  workflow_dispatch:
 
 jobs:
   # Step 1: Set environment variables

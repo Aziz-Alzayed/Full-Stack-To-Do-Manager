@@ -53,11 +53,11 @@ This repository contains CI/CD pipelines for provisioning infrastructure and dep
 
 ### 2. Backend API Pipeline
 
-- **Path**: `.github/workflows/api-cicd.yml`
+- **Path**: `.github/workflows/API-Workflow.yml`
 - **Purpose**: Build, test, and deploy the backend API to Azure.
 - **Triggers**:
   - **On Push/Merge to `main`**: For changes in `api/FSTD/**`.
-  - **On Tagging with `api-v*`**: For versioned releases.
+  - **Manual**: `workflow_dispatch`
 
 **Steps**:
 1. **Set Environment Variables**: Define the repository name, Azure web app name, and file path.
@@ -66,10 +66,10 @@ This repository contains CI/CD pipelines for provisioning infrastructure and dep
 
 ### 3. Frontend UI Pipeline
 
-- **Path**: `.github/workflows/ui-cicd.yml`
+- **Path**: `.github/workflows/UI-Workflow.yml`
 - **Purpose**: Build, test, and deploy the frontend UI to Azure.
 - **Triggers**:
-  - **On Pull Request to `main` or `ui/**` branch**: For code review processes.
+  - **Manual**: `workflow_dispatch`
   - **On Push to `main`**: For final deployment.
 
 **Steps**:
@@ -79,7 +79,7 @@ This repository contains CI/CD pipelines for provisioning infrastructure and dep
 
 ### 4. Function App Pipeline
 
-- **Path**: `.github/workflows/function-cicd.yml`
+- **Path**: `.github/workflows/TriggerFunction-Workflow.yml`
 - **Purpose**: Build, test, and deploy the Azure Function App Timer Trigger.
 - **Triggers**:
   - **On Push/Merge to `main`**: For changes in `services/FSTD.TimerTriggers/**`.
@@ -95,7 +95,6 @@ This repository contains CI/CD pipelines for provisioning infrastructure and dep
 ## How to Trigger Pipelines
 
 - **Manual Trigger**: Most pipelines can be manually triggered using the GitHub Actions tab in the repository.
-- **Pull Request Trigger**: Pipelines will run automatically when a pull request is made to `main` or other specified branches.
 - **Push Trigger**: Pipelines will execute on any push to `main` or to specific directories.
 
 ## Secrets and Environment Variables
