@@ -2,13 +2,6 @@
 
 namespace FSTD.Application.Validations
 {
-    public static class ValidatorExtensions
-    {
-        public static IRuleBuilder<T, string> IsPassword<T>(this IRuleBuilder<T, string> ruleBuilder)
-        {
-            return ruleBuilder.SetValidator(new PasswordValidator());
-        }
-    }
     public class PasswordValidator : AbstractValidator<string>
     {
         public PasswordValidator()

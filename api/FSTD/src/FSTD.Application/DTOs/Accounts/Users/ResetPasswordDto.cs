@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using FSTD.Application.Validations;
+using FSTD.Application.Validations.Extentions;
 
 namespace FSTD.Application.DTOs.Accounts.Users
 {
@@ -13,10 +13,9 @@ namespace FSTD.Application.DTOs.Accounts.Users
     {
         public ResetPasswordDtoValidator()
         {
-            RuleFor(dto => dto.Email).NotEmpty().WithMessage("Email address is required.")
-            .EmailAddress().WithMessage("Invalid email address.");
+            RuleFor(dto => dto.Email).IsEmail();
             RuleFor(dto => dto.Token).NotEmpty().WithMessage("Token name is required.");
-            RuleFor(dto => dto.NewPassword).NotEmpty().WithMessage("NewPassword is required.").IsPassword();
+            RuleFor(dto => dto.NewPassword).IsPassword();
         }
     }
 }

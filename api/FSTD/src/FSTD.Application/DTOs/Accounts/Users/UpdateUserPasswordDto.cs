@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using FSTD.Application.Validations;
+using FSTD.Application.Validations.Extentions;
 
 namespace FSTD.Application.DTOs.Accounts.Users
 {

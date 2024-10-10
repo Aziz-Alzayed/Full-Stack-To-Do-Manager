@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using FSTD.Application.Validations;
+using FSTD.Application.Validations.Extentions;
 
 namespace FSTD.Application.DTOs.Accounts.Admins
 {
@@ -26,14 +26,10 @@ namespace FSTD.Application.DTOs.Accounts.Admins
                 .NotEmpty().WithMessage("Last name is required.")
                 .Length(2, 50).WithMessage("Last name must be between 2 and 50 characters.");
 
-            RuleFor(dto => dto.PhoneNumber)
-                .NotNull().WithMessage(errorMessage: "Phone Number cannot be null.")
-                .NotEmpty().WithMessage("Phone number is required.")
-                .SetValidator(new PhoneNumberValidator());
+            RuleFor(dto => dto.PhoneNumber).IsPhoneNumber();
 
 
-            RuleFor(user => user.Email)
-            .SetValidator(new EmailValidator());
+            RuleFor(user => user.Email).IsEmail();
 
             RuleFor(dto => dto.Roles)
             .Cascade(CascadeMode.Stop)

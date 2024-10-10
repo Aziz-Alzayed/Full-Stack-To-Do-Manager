@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using FSTD.Application.Validations;
+using FSTD.Application.Validations.Extentions;
 
 namespace FSTD.Application.DTOs.Accounts.Auths
 {
@@ -12,7 +12,7 @@ namespace FSTD.Application.DTOs.Accounts.Auths
     {
         public ResendVerificationEmailDtoValidator()
         {
-            RuleFor(dto => dto.UserEmail).NotEmpty().EmailAddress().WithMessage("It must bee and email!");
+            RuleFor(dto => dto.UserEmail).IsEmail();
             RuleFor(dto => dto.VerificationUrl).IsReturnURL();
         }
     }

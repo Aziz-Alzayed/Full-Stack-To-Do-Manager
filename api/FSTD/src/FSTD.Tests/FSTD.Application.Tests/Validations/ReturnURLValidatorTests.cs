@@ -1,5 +1,4 @@
-﻿using FluentValidation.TestHelper;
-using FSTD.Application.Validations;
+﻿using FSTD.Application.Validations;
 
 namespace FSTD.Application.Tests.Validations
 {

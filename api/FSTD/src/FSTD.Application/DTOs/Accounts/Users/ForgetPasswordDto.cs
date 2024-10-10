@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using FSTD.Application.Validations;
+using FSTD.Application.Validations.Extentions;
 
 namespace FSTD.Application.DTOs.Accounts.Users
 {
@@ -12,8 +12,7 @@ namespace FSTD.Application.DTOs.Accounts.Users
     {
         public ForgetPasswordDtoValidator()
         {
-            RuleFor(dto => dto.Email).NotEmpty().WithMessage("Email address is required.")
-            .EmailAddress().WithMessage("Invalid email address.");
+            RuleFor(dto => dto.Email).IsEmail();
             RuleFor(dto => dto.ResetUrl).IsReturnURL();
         }
     }

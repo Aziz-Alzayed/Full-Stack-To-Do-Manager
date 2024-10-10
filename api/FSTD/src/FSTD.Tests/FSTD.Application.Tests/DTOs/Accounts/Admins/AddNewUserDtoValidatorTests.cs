@@ -1,5 +1,4 @@
-﻿using FluentValidation.TestHelper;
-using FSTD.Application.DTOs.Accounts.Admins;
+﻿using FSTD.Application.DTOs.Accounts.Admins;
 
 namespace FSTD.Application.Tests.DTOs.Accounts.Admins
 {

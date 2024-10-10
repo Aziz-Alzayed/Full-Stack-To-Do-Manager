@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FSTD.Application.Validations.Extentions;
 
 namespace FSTD.Application.DTOs.Accounts.Admins
 {
@@ -16,27 +17,30 @@ namespace FSTD.Application.DTOs.Accounts.Admins
         public UpdateUserDtoValidator()
         {
             RuleFor(dto => dto.Id)
-           .NotEmpty().WithMessage("Id is required.");
+               .NotNull().WithMessage(errorMessage: "Id cannot be null.")
+               .NotEmpty().WithMessage("Id is required.");
 
             RuleFor(dto => dto.FirstName)
-           .NotEmpty().WithMessage("First name is required.")
-           .Length(2, 50).WithMessage("First name must be between 2 and 50 characters.");
+               .NotEmpty().WithMessage("First name is required.")
+               .NotEmpty().WithMessage("First name is required.")
+               .Length(2, 50).WithMessage("First name must be between 2 and 50 characters.");
 
             RuleFor(dto => dto.LastName)
+                .NotNull().WithMessage(errorMessage: "Last Name cannot be null.")
                 .NotEmpty().WithMessage("Last name is required.")
                 .Length(2, 50).WithMessage("Last name must be between 2 and 50 characters.");
 
-            RuleFor(dto => dto.PhoneNumber)
-                .NotEmpty().WithMessage("Phone number is required.")
-                .Matches(new System.Text.RegularExpressions.Regex(@"^\+[1-9]\d{1,14}$")).WithMessage("Invalid phone number format.");
+            RuleFor(dto => dto.PhoneNumber).IsPhoneNumber();
 
 
-            RuleFor(dto => dto.Email).NotEmpty().WithMessage("Email address is required.")
-            .EmailAddress().WithMessage("Invalid email address.");
+            RuleFor(user => user.Email).IsEmail();
 
             RuleFor(dto => dto.Roles)
-            .NotEmpty().WithMessage("At least one role is required.")
-            .Must(roles => roles.All(role => !string.IsNullOrEmpty(role))).WithMessage("Roles cannot contain an empty value.");
+               .Cascade(CascadeMode.Stop)
+               .NotNull().WithMessage("Roles cannot be null.")
+               .NotEmpty().WithMessage("At least one role is required.")
+               .Must(roles => roles.All(role => !string.IsNullOrEmpty(role)))
+               .WithMessage("Roles cannot contain an empty value.");
 
         }
     }

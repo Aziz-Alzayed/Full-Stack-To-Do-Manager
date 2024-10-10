@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FSTD.Application.Validations.Extentions;
 
 namespace FSTD.Application.DTOs.Accounts.Auths
 {
@@ -11,8 +12,9 @@ namespace FSTD.Application.DTOs.Accounts.Auths
     {
         public LoginRequestDtoValidator()
         {
-            RuleFor(dto => dto.Email).NotEmpty().WithMessage("Email address is required.")
-            .EmailAddress().WithMessage("Invalid email address.");
+            RuleFor(user => user.Password).IsPassword();
+
+            RuleFor(user => user.Email).IsEmail();
         }
     }
 }

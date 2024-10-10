@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using FSTD.Application.Validations;
+using FSTD.Application.Validations.Extentions;
 
 namespace FSTD.Application.DTOs.Accounts.Users
 {
@@ -12,9 +12,7 @@ namespace FSTD.Application.DTOs.Accounts.Users
     {
         public UpdateUserEmailDtoValidator()
         {
-            RuleFor(dto => dto.NewEmail)
-            .NotEmpty().WithMessage("NewEmail is required.")
-            .EmailAddress().WithMessage("Invalid email address format.");
+            RuleFor(dto => dto.NewEmail).IsEmail();
 
             RuleFor(dto => dto.VerificationUrl).IsReturnURL();
         }

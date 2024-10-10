@@ -2,13 +2,6 @@
 
 namespace FSTD.Application.Validations
 {
-    public static class ReturnURLValidatorExtensions
-    {
-        public static IRuleBuilder<T, string> IsReturnURL<T>(this IRuleBuilder<T, string> ruleBuilder)
-        {
-            return ruleBuilder.SetValidator(new ReturnURLValidator());
-        }
-    }
     public class ReturnURLValidator : AbstractValidator<string>
     {
 
