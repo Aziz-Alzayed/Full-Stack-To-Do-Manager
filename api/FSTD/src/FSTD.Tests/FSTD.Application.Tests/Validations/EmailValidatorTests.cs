@@ -3,6 +3,7 @@ using FSTD.Application.Validations;
 
 namespace FSTD.Application.Tests.Validations
 {
+
     public class EmailValidatorTests
     {
         private readonly EmailValidator _validator;
@@ -12,45 +13,64 @@ namespace FSTD.Application.Tests.Validations
             _validator = new EmailValidator();
         }
 
+        // Test case for when the email is empty
         [Fact]
-        public void Should_HaveError_When_EmailIsEmpty()
+        public void Should_Have_Error_When_Email_Is_Empty()
         {
             // Arrange
-            var model = string.Empty;
+            var email = string.Empty;
 
             // Act
-            var result = _validator.TestValidate(model);
+            var result = _validator.TestValidate(email);
 
             // Assert
-            result.ShouldHaveValidationErrorFor(email => email)
-                .WithErrorMessage("User Email is required.");
+            result.ShouldHaveValidationErrorFor(x => x)
+                  .WithErrorMessage("Email is required.");
         }
 
+        // Test case for when the email is null
         [Fact]
-        public void Should_HaveError_When_EmailIsInvalid()
+        public void Should_Have_Error_When_Email_Is_Null()
         {
             // Arrange
-            var model = "invalid-email";
+            string email = null;
 
-            // Act
-            var result = _validator.TestValidate(model);
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentNullException>(() => _validator.TestValidate(email));
 
-            // Assert
-            result.ShouldHaveValidationErrorFor(email => email)
-                .WithErrorMessage("User Email must be a valid email address.");
+            // Assert that the exception is thrown
+            Assert.Equal("Cannot pass null model to Validate. (Parameter 'instanceToValidate')", exception.Message);
         }
 
-        [Fact]
-        public void Should_NotHaveError_When_EmailIsValid()
+        // Test cases for invalid email formats
+        [Theory]
+        [InlineData("invalid-email")]
+        [InlineData("user@domain")]
+        [InlineData("user@.com")]
+        [InlineData("@example.com")]
+        [InlineData("user@domain.")]
+        public void Should_Have_Error_When_Email_Is_Invalid(string email)
         {
-            // Arrange
-            var model = "user@example.com";
-
             // Act
-            var result = _validator.TestValidate(model);
+            var result = _validator.TestValidate(email);
 
             // Assert
-            result.ShouldNotHaveValidationErrorFor(email => email);
+            result.ShouldHaveValidationErrorFor(x => x)
+                  .WithErrorMessage("Email must be a valid email address.");
+        }
+
+        // Test case for valid email addresses
+        [Theory]
+        [InlineData("user@example.com")]
+        [InlineData("admin@domain.org")]
+        [InlineData("contact@company.co")]
+        public void Should_Not_Have_Error_When_Email_Is_Valid(string email)
+        {
+            // Act
+            var result = _validator.TestValidate(email);
+
+            // Assert
+            result.ShouldNotHaveValidationErrorFor(x => x);
         }
     }
 }

@@ -63,7 +63,7 @@ namespace FSTD.Application.Tests.Validations
 
             // Assert
             result.ShouldHaveValidationErrorFor(url => url)
-                .WithErrorMessage("URL must start with https://.");
+                .WithErrorMessage("URL must start with https:// or http://");
         }
     }
 }

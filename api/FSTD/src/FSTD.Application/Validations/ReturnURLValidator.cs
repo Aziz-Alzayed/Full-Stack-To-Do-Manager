@@ -17,7 +17,7 @@ namespace FSTD.Application.Validations
             RuleFor(x => x)
                 .Cascade(CascadeMode.Stop)
                 .NotEmpty().WithMessage("Return URL is required.")
-                .Must(BeAValidHttpsUrl).WithMessage(@"URL must start with https://.");
+                .Must(BeAValidHttpsUrl).WithMessage(@"URL must start with https:// or http://");
         }
 
         private bool BeAValidHttpsUrl(string returnUrl)

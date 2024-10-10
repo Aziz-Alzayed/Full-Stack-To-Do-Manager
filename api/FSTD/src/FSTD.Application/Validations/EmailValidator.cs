@@ -7,8 +7,23 @@ namespace FSTD.Application.Validations
         public EmailValidator()
         {
             RuleFor(email => email)
-                .NotEmpty().WithMessage("User Email is required.")
-                .EmailAddress().WithMessage("User Email must be a valid email address.");
+                .Cascade(CascadeMode.Stop)
+                .NotEmpty().WithMessage("Email is required.")
+                .EmailAddress().WithMessage("Email must be a valid email address.") // FluentValidation's built-in email check
+                .Must(HaveValidEmailStructure).WithMessage("Email must be a valid email address."); // Custom rule to ensure "@" and "." are present
+        }
+
+        // Custom validation to check if the email contains "@" and a "."
+        private bool HaveValidEmailStructure(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+                return false;
+
+            var atIndex = email.IndexOf('@');
+            var dotIndex = email.LastIndexOf('.');
+
+            // Ensure "@" is before the last "." and both exist
+            return atIndex > 0 && dotIndex > atIndex + 1 && dotIndex < email.Length - 1;
         }
     }
 }

@@ -18,23 +18,29 @@ namespace FSTD.Application.DTOs.Accounts.Admins
         {
             RuleFor(dto => dto.FirstName)
            .NotEmpty().WithMessage("First name is required.")
+           .NotNull().WithMessage(errorMessage: "First name cannot be null.")
            .Length(2, 50).WithMessage("First name must be between 2 and 50 characters.");
 
             RuleFor(dto => dto.LastName)
+                .NotNull().WithMessage(errorMessage: "Last Name cannot be null.")
                 .NotEmpty().WithMessage("Last name is required.")
                 .Length(2, 50).WithMessage("Last name must be between 2 and 50 characters.");
 
             RuleFor(dto => dto.PhoneNumber)
+                .NotNull().WithMessage(errorMessage: "Phone Number cannot be null.")
                 .NotEmpty().WithMessage("Phone number is required.")
-                .Matches(new System.Text.RegularExpressions.Regex(@"^\+[1-9]\d{1,14}$")).WithMessage("Invalid phone number format.");
+                .SetValidator(new PhoneNumberValidator());
 
 
-            RuleFor(dto => dto.Email).NotEmpty().WithMessage("Email address is required.")
-            .EmailAddress().WithMessage("Invalid email address.");
+            RuleFor(user => user.Email)
+            .SetValidator(new EmailValidator());
 
             RuleFor(dto => dto.Roles)
+            .Cascade(CascadeMode.Stop)
+            .NotNull().WithMessage("Roles cannot be null.")
             .NotEmpty().WithMessage("At least one role is required.")
-            .Must(roles => roles.All(role => !string.IsNullOrEmpty(role))).WithMessage("Roles cannot contain an empty value.");
+            .Must(roles => roles.All(role => !string.IsNullOrEmpty(role)))
+            .WithMessage("Roles cannot contain an empty value.");
 
             RuleFor(dto => dto.ResetURL).IsReturnURL();
         }
