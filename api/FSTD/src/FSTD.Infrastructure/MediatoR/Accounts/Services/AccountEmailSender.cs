@@ -1,5 +1,5 @@
-﻿using FSTD.Application.Exceptions;
-using FSTD.DataCore.Models.Users;
+﻿using FSTD.DataCore.Models.Users;
+using FSTD.Exeptions.Models.HttpResponseExceptions;
 using FSTD.Infrastructure.CommonServices.EndPointsRegisterServices;
 using FSTD.Infrastructure.EmailServices;
 using Microsoft.Extensions.DependencyInjection;

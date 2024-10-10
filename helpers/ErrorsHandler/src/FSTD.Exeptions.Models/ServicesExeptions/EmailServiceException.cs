@@ -1,4 +1,4 @@
-﻿namespace FSTD.Application.Exceptions
+﻿namespace FSTD.Exeptions.Models.ServicesExeptions
 {
     public class EmailServiceException : Exception
     {

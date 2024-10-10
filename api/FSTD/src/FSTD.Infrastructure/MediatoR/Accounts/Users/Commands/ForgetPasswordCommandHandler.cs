@@ -1,6 +1,6 @@
-﻿using FSTD.Application.Exceptions;
-using FSTD.Application.MediatoR.Accounts.Users.Commands;
+﻿using FSTD.Application.MediatoR.Accounts.Users.Commands;
 using FSTD.Application.MediatoR.Accounts.Users.Repos;
+using FSTD.Exeptions.Models.HttpResponseExceptions;
 using FSTD.Infrastructure.MediatoR.Accounts.Services;
 using MediatR;
 

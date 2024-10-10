@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using FSTD.Application.DTOs.Accounts.Users;
-using FSTD.Application.Exceptions;
 using FSTD.Application.MediatoR.Accounts.Users.Queries;
 using FSTD.Application.MediatoR.Accounts.Users.Repos;
+using FSTD.Exeptions.Models.HttpResponseExceptions;
 using MediatR;
 
 namespace FSTD.Infrastructure.MediatoR.Accounts.Users.Queries

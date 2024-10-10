@@ -1,7 +1,7 @@
-﻿using FSTD.Application.Exceptions;
-using FSTD.Application.MediatoR.Accounts.Admins.Commands;
+﻿using FSTD.Application.MediatoR.Accounts.Admins.Commands;
 using FSTD.Application.MediatoR.Accounts.Admins.Repos;
 using FSTD.DataCore.Models.Users;
+using FSTD.Exeptions.Models.HttpResponseExceptions;
 using FSTD.Infrastructure.EmailServices;
 using FSTD.Infrastructure.MediatoR.Accounts.Auth.Services;
 using FSTD.Infrastructure.MediatoR.Accounts.Services;

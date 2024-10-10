@@ -1,6 +1,7 @@
 
 using FSTD.API.ApiAttributes;
 using FSTD.API.Middlewares;
+using FSTD.ExceptionsHandler.Exceptions;
 using FSTD.Infrastructure;
 
 var app = CreateWebApplicationBuilder().Build();

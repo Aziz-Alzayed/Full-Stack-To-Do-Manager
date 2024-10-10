@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using FSTD.Application.DTOs.Productivity.Tasks;
-using FSTD.Application.Exceptions;
 using FSTD.Application.MediatoR.Accounts.Users.Repos;
 using FSTD.Application.MediatoR.Productivity.Tasks.Queries;
 using FSTD.Application.MediatoR.Productivity.Tasks.Repos;
+using FSTD.Exeptions.Models.HttpResponseExceptions;
 using MediatR;
 
 namespace FSTD.Infrastructure.MediatoR.Productivity.Tasks.Queries

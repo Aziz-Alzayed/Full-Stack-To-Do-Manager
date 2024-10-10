@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\helpers\ErrorsHandler\src\FSTD.ExceptionsHandler\FSTD.ExceptionsHandler.csproj" />
     <ProjectReference Include="..\FSTD.Application\FSTD.Application.csproj" />
     <ProjectReference Include="..\FSTD.Infrastructure\FSTD.Infrastructure.csproj" />
   </ItemGroup>

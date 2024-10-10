@@ -1,4 +1,4 @@
-﻿using FSTD.Application.Exceptions;
+﻿using FSTD.Exeptions.Models.ServicesExeptions;
 using FSTD.Infrastructure.CommonServices.EndPointsRegisterServices;
 using Mailjet.Client;
 using Mailjet.Client.Resources;

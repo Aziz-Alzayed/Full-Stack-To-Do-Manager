@@ -1,6 +1,6 @@
-﻿using FSTD.Application.Exceptions;
-using FSTD.DataCore.Authentication;
+﻿using FSTD.DataCore.Authentication;
 using FSTD.DataCore.Models.Users;
+using FSTD.Exeptions.Models.HttpResponseExceptions;
 using FSTD.Infrastructure.CommonServices.EndPointsRegisterServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;

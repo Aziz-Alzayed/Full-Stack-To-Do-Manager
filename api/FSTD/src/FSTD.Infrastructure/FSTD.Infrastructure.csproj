@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\helpers\ErrorsHandler\src\FSTD.Exeptions.Models\FSTD.Exeptions.Models.csproj" />
     <ProjectReference Include="..\FSTD.Application\FSTD.Application.csproj" />
     <ProjectReference Include="..\FSTD.DataCore\FSTD.DataCore.csproj" />
   </ItemGroup>

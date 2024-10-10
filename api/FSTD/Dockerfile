@@ -14,6 +14,8 @@ COPY api/FSTD/src/FSTD.API/FSTD.API.csproj FSTD.API/
 COPY api/FSTD/src/FSTD.DataCore/FSTD.DataCore.csproj FSTD.DataCore/
 COPY api/FSTD/src/FSTD.Application/FSTD.Application.csproj FSTD.Application/
 COPY api/FSTD/src/FSTD.Infrastructure/FSTD.Infrastructure.csproj FSTD.Infrastructure/
+COPY helpers/ErrorsHandler/src/FSTD.ExceptionsHandler/FSTD.ExceptionsHandler.csproj /helpers/ErrorsHandler/src/FSTD.ExceptionsHandler/
+COPY helpers/ErrorsHandler/src/FSTD.Exeptions.Models/FSTD.Exeptions.Models.csproj /helpers/ErrorsHandler/src/FSTD.Exeptions.Models/
 
 # Restore dependencies for all projects
 RUN dotnet restore FSTD.API/FSTD.API.csproj
@@ -23,6 +25,9 @@ COPY api/FSTD/src/FSTD.API/ FSTD.API/
 COPY api/FSTD/src/FSTD.DataCore/ FSTD.DataCore/
 COPY api/FSTD/src/FSTD.Application/ FSTD.Application/
 COPY api/FSTD/src/FSTD.Infrastructure/ FSTD.Infrastructure/
+COPY helpers/ErrorsHandler/src/FSTD.ExceptionsHandler/ /helpers/ErrorsHandler/src/FSTD.ExceptionsHandler/
+COPY helpers/ErrorsHandler/src/FSTD.Exeptions.Models/ /helpers/ErrorsHandler/src/FSTD.Exeptions.Models/
+
 # Build the project
 WORKDIR /src/FSTD.API
 RUN dotnet build FSTD.API.csproj -c $BUILD_CONFIGURATION -o /app/build

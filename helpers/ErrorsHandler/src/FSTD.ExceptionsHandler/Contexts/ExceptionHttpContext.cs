@@ -1,7 +1,8 @@
-﻿using System.Net;
+﻿using Microsoft.AspNetCore.Http;
+using System.Net;
 using System.Text.Json;
 
-namespace FSTD.API.Middlewares.Based
+namespace FSTD.ExceptionsHandler.Contexts
 {
     public static class ExceptionHttpContext
     {
