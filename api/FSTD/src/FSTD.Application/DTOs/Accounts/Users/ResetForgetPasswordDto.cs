@@ -13,9 +13,15 @@ namespace FSTD.Application.DTOs.Accounts.Users
     {
         public ResetForgetPasswordDtoValidator()
         {
-            RuleFor(dto => dto.Email).IsEmail();
+            RuleFor(dto => dto.Email)
+                .NotNull().WithMessage("Email is required.")
+                .NotEmpty().WithMessage("Email is required.")
+                .IsEmail();
             RuleFor(dto => dto.Token).NotEmpty().WithMessage("Token name is required.");
-            RuleFor(dto => dto.NewPassword).IsPassword();
+            RuleFor(dto => dto.NewPassword)
+                .NotNull().WithMessage("Password is required.")
+                .NotEmpty().WithMessage("Password is required.")
+                .IsPassword();
         }
     }
 }

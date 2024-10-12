@@ -8,7 +8,7 @@ namespace FSTD.Application.Validations
         public ReturnURLValidator()
         {
             RuleFor(x => x)
-                .NotEmpty().WithMessage("Return URL is required.")
+                .Cascade(CascadeMode.Stop)
                 .Must(BeAValidHttpsUrl).WithMessage(@"URL must start with https:// or http://");
         }
 

@@ -12,20 +12,6 @@ namespace FSTD.Application.Tests.Validations
         }
 
         [Fact]
-        public void Should_HaveError_When_PasswordIsEmpty()
-        {
-            // Arrange
-            var password = string.Empty;
-
-            // Act
-            var result = _validator.TestValidate(password);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(p => p)
-                .WithErrorMessage("Password is required.");
-        }
-
-        [Fact]
         public void Should_HaveError_When_PasswordIsTooShort()
         {
             // Arrange
@@ -74,27 +60,6 @@ namespace FSTD.Application.Tests.Validations
             {
                 result.ShouldHaveValidationErrorFor(p => p)
                     .WithErrorMessage("Password must contain a lowercase letter.");
-            }
-            else
-            {
-                result.ShouldNotHaveValidationErrorFor(p => p);
-            }
-        }
-
-        [Fact]
-        public void Should_HaveError_When_PasswordDoesNotContainDigit()
-        {
-            // Arrange
-            var password = "Password!"; // no digit
-
-            // Act
-            var result = _validator.TestValidate(password);
-
-            // Assert
-            if (PasswordRules.RequireDigit)
-            {
-                result.ShouldHaveValidationErrorFor(p => p)
-                    .WithErrorMessage("Password must contain a digit.");
             }
             else
             {

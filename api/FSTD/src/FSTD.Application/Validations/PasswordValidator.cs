@@ -7,7 +7,7 @@ namespace FSTD.Application.Validations
         public PasswordValidator()
         {
             RuleFor(password => password)
-                .NotEmpty().WithMessage("Password is required.")
+                .Cascade(CascadeMode.Stop)
                 .MinimumLength(PasswordRules.RequiredLength).WithMessage($"Password must be at least {PasswordRules.RequiredLength} characters long.")
                 .Matches("[A-Z]").When(_ => PasswordRules.RequireUppercase).WithMessage("Password must contain an uppercase letter.")
                 .Matches("[a-z]").When(_ => PasswordRules.RequireLowercase).WithMessage("Password must contain a lowercase letter.")

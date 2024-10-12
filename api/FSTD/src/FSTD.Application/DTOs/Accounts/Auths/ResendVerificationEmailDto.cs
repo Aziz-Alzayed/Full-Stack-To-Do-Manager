@@ -12,8 +12,13 @@ namespace FSTD.Application.DTOs.Accounts.Auths
     {
         public ResendVerificationEmailDtoValidator()
         {
-            RuleFor(dto => dto.UserEmail).IsEmail();
-            RuleFor(dto => dto.VerificationUrl).IsReturnURL();
+            RuleFor(dto => dto.UserEmail)
+                .NotNull().WithMessage("Email is required.")
+                .NotEmpty().WithMessage("Email is required.")
+                .IsEmail();
+            RuleFor(dto => dto.VerificationUrl)
+                .NotEmpty().WithMessage("Return URL is required.")
+                .IsReturnURL();
         }
     }
 }

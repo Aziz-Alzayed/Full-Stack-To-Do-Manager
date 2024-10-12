@@ -43,7 +43,9 @@ namespace FSTD.Application.DTOs.Accounts.Admins
             .Must(roles => roles.All(role => !string.IsNullOrEmpty(role)))
             .WithMessage("Roles cannot contain an empty value.");
 
-            RuleFor(dto => dto.ResetURL).IsReturnURL();
+            RuleFor(dto => dto.ResetURL)
+                .NotEmpty().WithMessage("Return URL is required.")
+                .IsReturnURL();
         }
     }
 }

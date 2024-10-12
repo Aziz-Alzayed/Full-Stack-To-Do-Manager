@@ -12,8 +12,13 @@ namespace FSTD.Application.DTOs.Accounts.Users
     {
         public RequestResetPasswordDtoValidator()
         {
-            RuleFor(dto => dto.Email).IsEmail();
-            RuleFor(dto => dto.ResetURL).IsReturnURL();
+            RuleFor(dto => dto.Email)
+                .NotNull().WithMessage("Email is required.")
+                .NotEmpty().WithMessage("Email is required.")
+                .IsEmail();
+            RuleFor(dto => dto.ResetURL)
+                .NotEmpty().WithMessage("Return URL is required.")
+                .IsReturnURL();
 
         }
     }

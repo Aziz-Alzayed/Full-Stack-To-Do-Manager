@@ -12,8 +12,12 @@ namespace FSTD.Application.DTOs.Accounts.Users
     {
         public UpdateUserPasswordDtoValidator()
         {
-            RuleFor(dto => dto.OldPassword).NotEmpty().WithMessage("OldPassword is required.");
-            RuleFor(dto => dto.NewPassword).NotEmpty().WithMessage("NewPassword name is required.").IsPassword();
+            RuleFor(dto => dto.OldPassword)
+                .NotEmpty().WithMessage("OldPassword is required.");
+            RuleFor(dto => dto.NewPassword)
+                .NotNull().WithMessage("NewPassword cannot be null.")
+                .NotEmpty().WithMessage("NewPassword name is required.")
+                .IsPassword();
         }
     }
 }

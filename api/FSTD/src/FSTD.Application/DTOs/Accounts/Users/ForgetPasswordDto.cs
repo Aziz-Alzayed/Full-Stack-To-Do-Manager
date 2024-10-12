@@ -12,8 +12,13 @@ namespace FSTD.Application.DTOs.Accounts.Users
     {
         public ForgetPasswordDtoValidator()
         {
-            RuleFor(dto => dto.Email).IsEmail();
-            RuleFor(dto => dto.ResetUrl).IsReturnURL();
+            RuleFor(dto => dto.Email)
+                .NotNull().WithMessage("Email is required.")
+                .NotEmpty().WithMessage("Email is required.")
+                .IsEmail();
+            RuleFor(dto => dto.ResetUrl)
+                .NotEmpty().WithMessage("Return URL is required.")
+                .IsReturnURL();
         }
     }
 }

@@ -12,9 +12,15 @@ namespace FSTD.Application.DTOs.Accounts.Auths
     {
         public LoginRequestDtoValidator()
         {
-            RuleFor(user => user.Password).IsPassword();
+            RuleFor(user => user.Password)
+                .NotNull().WithMessage("Password is required.")
+                .NotEmpty().WithMessage("Password is required.")
+                .IsPassword();
 
-            RuleFor(user => user.Email).IsEmail();
+            RuleFor(user => user.Email)
+                .NotNull().WithMessage("Email is required.")
+                .NotEmpty().WithMessage("Email is required.")
+                .IsEmail();
         }
     }
 }

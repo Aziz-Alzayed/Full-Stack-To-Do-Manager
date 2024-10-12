@@ -11,8 +11,10 @@ namespace FSTD.Application.DTOs.Accounts.Users
     {
         public VerifyEmailDtoValidator()
         {
-            RuleFor(dto => dto.UserId).NotEmpty().WithMessage("UserId is required.");
-            RuleFor(dto => dto.Token).NotEmpty().WithMessage("Token is required.");
+            RuleFor(dto => dto.UserId)
+                .NotEmpty().WithMessage("UserId is required.");
+            RuleFor(dto => dto.Token)
+                .NotEmpty().WithMessage("Token is required.");
         }
     }
 }

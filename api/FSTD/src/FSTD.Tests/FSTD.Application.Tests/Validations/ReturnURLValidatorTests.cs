@@ -12,20 +12,6 @@ namespace FSTD.Application.Tests.Validations
         }
 
         [Fact]
-        public void Should_HaveError_When_ReturnURLIsEmpty()
-        {
-            // Arrange
-            var returnUrl = string.Empty;
-
-            // Act
-            var result = _validator.TestValidate(returnUrl);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(url => url)
-                .WithErrorMessage("Return URL is required.");
-        }
-
-        [Fact]
         public void Should_NotHaveError_When_ReturnURLIsValidHttps()
         {
             // Arrange
