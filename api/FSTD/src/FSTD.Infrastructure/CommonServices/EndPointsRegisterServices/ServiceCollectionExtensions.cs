@@ -14,6 +14,14 @@ namespace FSTD.Infrastructure.CommonServices.EndPointsRegisterServices
             foreach (var type in typesWithAttribute)
             {
                 var attribute = type.GetCustomAttribute<AutoRegisterAttribute>();
+
+                // Check if ShouldRegister is false, and skip registration if so
+                if (!attribute.ShouldRegister)
+                {
+                    Console.WriteLine($"Skipping registration for {type.Name} because ShouldRegister is set to false.");
+                    continue;
+                }
+
                 var interfaceType = type.GetInterfaces().FirstOrDefault(i => i.Name == $"I{type.Name}");
 
                 if (interfaceType != null)
