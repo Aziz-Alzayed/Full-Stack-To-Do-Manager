@@ -12,21 +12,6 @@ namespace FSTD.Application.Tests.Validations
             _validator = new EmailValidator();
         }
 
-        // Test case for when the email is empty
-        [Fact]
-        public void Should_Have_Error_When_Email_Is_Empty()
-        {
-            // Arrange
-            var email = string.Empty;
-
-            // Act
-            var result = _validator.TestValidate(email);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(x => x)
-                  .WithErrorMessage("Email is required.");
-        }
-
         // Test case for when the email is null
         [Fact]
         public void Should_Have_Error_When_Email_Is_Null()

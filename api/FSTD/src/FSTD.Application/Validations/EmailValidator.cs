@@ -7,8 +7,6 @@ namespace FSTD.Application.Validations
         public EmailValidator()
         {
             RuleFor(email => email)
-                .Cascade(CascadeMode.Stop)
-                .NotEmpty().WithMessage("Email is required.")
                 .EmailAddress().WithMessage("Email must be a valid email address.") // FluentValidation's built-in email check
                 .Must(HaveValidEmailStructure).WithMessage("Email must be a valid email address."); // Custom rule to ensure "@" and "." are present
         }

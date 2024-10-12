@@ -163,6 +163,9 @@ namespace FSTD.Application.Tests.DTOs.Accounts.Admins
             // Arrange
             var dto = new AddNewUserDto
             {
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "test@example.com",
                 PhoneNumber = null,
                 Roles = new string[] { "Admin" }
             };

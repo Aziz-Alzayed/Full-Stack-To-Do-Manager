@@ -11,21 +11,6 @@ namespace FSTD.Application.Tests.Validations
             _validator = new PhoneNumberValidator();
         }
 
-        // Test case for when the phone number is empty
-        [Fact]
-        public void Should_Have_Error_When_PhoneNumber_Is_Empty()
-        {
-            // Arrange
-            var phoneNumber = string.Empty;
-
-            // Act
-            var result = _validator.TestValidate(phoneNumber);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(x => x)
-                  .WithErrorMessage("Phone number is required.");
-        }
-
         // Test case for when the phone number is null
         [Fact]
         public void Should_Have_Error_When_PhoneNumber_Is_Null()

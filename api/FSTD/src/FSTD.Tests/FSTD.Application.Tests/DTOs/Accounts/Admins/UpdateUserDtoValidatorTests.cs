@@ -107,7 +107,15 @@ namespace FSTD.Application.Tests.DTOs.Accounts.Admins
         public void Should_Have_Error_When_PhoneNumber_Is_Null()
         {
             // Arrange
-            var dto = new UpdateUserDto { PhoneNumber = null };
+            var dto = new UpdateUserDto
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "test@example.com",
+                PhoneNumber = null,
+                Roles = new string[] { "Admin" }
+            };
 
             // Act
             var result = _validator.TestValidate(dto);

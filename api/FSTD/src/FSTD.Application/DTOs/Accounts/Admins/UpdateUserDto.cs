@@ -30,10 +30,16 @@ namespace FSTD.Application.DTOs.Accounts.Admins
                 .NotEmpty().WithMessage("Last name is required.")
                 .Length(2, 50).WithMessage("Last name must be between 2 and 50 characters.");
 
-            RuleFor(dto => dto.PhoneNumber).IsPhoneNumber();
+            RuleFor(dto => dto.PhoneNumber)
+                .NotNull().WithMessage("Phone Number cannot be null.")
+                .NotEmpty().WithMessage("Phone number is required.")
+                .IsPhoneNumber();
 
 
-            RuleFor(user => user.Email).IsEmail();
+            RuleFor(user => user.Email)
+                .NotNull().WithMessage("Email is required.")
+                .NotEmpty().WithMessage("Email is required.")
+                .IsEmail();
 
             RuleFor(dto => dto.Roles)
                .Cascade(CascadeMode.Stop)
