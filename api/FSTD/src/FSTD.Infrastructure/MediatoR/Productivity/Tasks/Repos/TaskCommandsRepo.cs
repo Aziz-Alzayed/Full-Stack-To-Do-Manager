@@ -8,24 +8,21 @@ using Microsoft.Extensions.DependencyInjection;
 namespace FSTD.Infrastructure.MediatoR.Productivity.Tasks.Repos
 {
     [AutoRegister(ServiceLifetime.Scoped)]
-    internal class TaskCommandsRepo(
+    public class TaskCommandsRepo(
         ApplicationDbContext _dbContext
         ) : ITaskCommandsRepo
     {
         public async Task<TasksModel> AddTaskAsync(TasksModel tasksModel)
         {
-            using var transaction = await _dbContext.Database.BeginTransactionAsync(); // Begin transaction
             try
             {
                 await _dbContext.Tasks.AddAsync(tasksModel);
                 await _dbContext.SaveChangesAsync();
 
-                await transaction.CommitAsync();
                 return tasksModel;
             }
             catch
             {
-                await transaction.RollbackAsync();
                 throw;
             }
         }

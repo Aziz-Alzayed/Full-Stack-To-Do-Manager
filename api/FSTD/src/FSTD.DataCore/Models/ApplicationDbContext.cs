@@ -19,7 +19,10 @@ namespace FSTD.DataCore.Models
             : base(options)
         {
             Options = options;
-            this.Database.SetCommandTimeout(180);
+            if (Database.IsRelational())
+            {
+                this.Database.SetCommandTimeout(180); // Only apply this for relational databases
+            }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
