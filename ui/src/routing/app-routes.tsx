@@ -6,7 +6,7 @@ import UserProfile from "../components/modules/user-profile/user-profile";
 import EmailVerificationPage from "../components/pages/email-verification-page";
 import LandingPage from "../components/pages/landing-page";
 import LoginPage from "../components/pages/login-page";
-import ResetForgatePasswordPage from "../components/pages/reset-forget-password-page";
+import ResetForgottenPasswordPage from "../components/pages/reset-forget-password-page";
 import NotFoundPage from "../error-handlers/not-found-page";
 import TaskListView from "../components/modules/tasks-module/main-view/tasks-list-view";
 import TasksLoader from "../components/modules/tasks-module/loader/tasks-loader";
@@ -50,7 +50,7 @@ const AppRoutes: FC = () => {
       <Route path={paths.verifyEmail} element={<EmailVerificationPage />} />
       <Route path={paths.unauthorized} element={<NotFoundPage />} />
       <Route path={paths.login} element={<LoginPage />} />
-      <Route path={paths.resetPassword} element={<ResetForgatePasswordPage />} />
+      <Route path={paths.resetPassword} element={<ResetForgottenPasswordPage />} />
       <Route path={paths.notFound} element={<NotFoundPage />} />
     </Routes>
   );

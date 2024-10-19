@@ -14,7 +14,7 @@ interface ResetPasswordFormData {
   confirmPassword: string;
 }
 
-const ResetForgatedPasswordPage: React.FC = () => {
+const ResetForgottenPasswordPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState<boolean>(false);
   const navigateWithLanguage = useLanguageAwareNavigate();
@@ -111,4 +111,4 @@ const ResetForgatedPasswordPage: React.FC = () => {
   );
 };
 
-export default ResetForgatedPasswordPage;
+export default ResetForgottenPasswordPage;
