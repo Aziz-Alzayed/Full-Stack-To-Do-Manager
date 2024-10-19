@@ -4,4 +4,22 @@ export class FinnishTranslation extends BaseTranslation {
   homePage = "Kotisivu";
   userManagement = "Käyttäjähallinta";
   tasks = "Tehtävät";
+  password = "Salasana";
+  submit = "Lähetä"
+  email = "Sähköposti";
+  passwordInputMessage = "Syötä salasanasi!";
+  passwordWarningMessage = "Salasanan on oltava vähintään";
+  passwordAtLeastOneDigit = "Salasanassa on oltava vähintään yksi numero!";
+  passwordAtLeastOneLowCase =
+    "Salasanassa on oltava vähintään yksi pieni kirjain!";
+  passwordAtLeastOneUpperCase =
+    "Salasanassa on oltava vähintään yksi iso kirjain!";
+  passwordAtLeastOneNonAlphNum =
+    "Salasanassa on oltava vähintään yksi erikoismerkki!";
+  submittingForgotPassword =
+    "Lähetetään unohtuneen salasanan pyyntö henkilölle";
+  failedSubmitForgotPassword = "Unohtuneen salasanan pyynnön lähettäminen epäonnistui";
+  emailInputMessage= "Syötä sähköpostiosoitteesi";
+  checkYourEmail= "Tarkista sähköpostisi";
+  forgotPassword= "Unohtunut salasana";
 }

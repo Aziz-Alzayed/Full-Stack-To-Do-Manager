@@ -1,6 +1,8 @@
 import React from "react";
 import { Form, Input } from "antd";
 import { Rule } from "rc-field-form/lib/interface";
+import { useTranslation } from "react-i18next";
+import { TranslationKeys } from "../../../localization/translations/base-translation";
 
 interface PasswordRulesType {
   RequireDigit: boolean;
@@ -22,18 +24,22 @@ const PasswordRules: PasswordRulesType = {
 };
 
 const PasswordInput: React.FC = () => {
+  const { t } = useTranslation();
+
   // An array of validation rules
   const validationRules: Rule[] = [
-    { required: true, message: "Please input your password!" },
+    { required: true, message: t(TranslationKeys.passwordInputMessage) },
     {
       min: PasswordRules.RequiredLength,
-      message: `Password must be at least ${PasswordRules.RequiredLength} characters long!`,
+      message: `${t(TranslationKeys.passwordWarningMessage)}:  ${
+        PasswordRules.RequiredLength
+      }.`,
     },
     {
       validator: (_, value) =>
         PasswordRules.RequireDigit && value && !/[0-9]/.test(value)
           ? Promise.reject(
-              new Error("Password must contain at least one digit!")
+              new Error(t(TranslationKeys.passwordAtLeastOneDigit))
             )
           : Promise.resolve(),
     },
@@ -41,7 +47,7 @@ const PasswordInput: React.FC = () => {
       validator: (_, value) =>
         PasswordRules.RequireLowercase && value && !/[a-z]/.test(value)
           ? Promise.reject(
-              new Error("Password must contain at least one lowercase letter!")
+              new Error(t(TranslationKeys.passwordAtLeastOneLowCase))
             )
           : Promise.resolve(),
     },
@@ -49,7 +55,7 @@ const PasswordInput: React.FC = () => {
       validator: (_, value) =>
         PasswordRules.RequireUppercase && value && !/[A-Z]/.test(value)
           ? Promise.reject(
-              new Error("Password must contain at least one uppercase letter!")
+              new Error(t(TranslationKeys.passwordAtLeastOneUpperCase))
             )
           : Promise.resolve(),
     },
@@ -59,9 +65,7 @@ const PasswordInput: React.FC = () => {
         value &&
         !/[^A-Za-z0-9]/.test(value)
           ? Promise.reject(
-              new Error(
-                "Password must contain at least one non-alphanumeric character!"
-              )
+              new Error(t(TranslationKeys.passwordAtLeastOneNonAlphNum))
             )
           : Promise.resolve(),
     },
@@ -71,11 +75,11 @@ const PasswordInput: React.FC = () => {
   return (
     <Form.Item
       name="password"
-      label="Password"
+      label={t(TranslationKeys.password)}
       rules={validationRules}
       hasFeedback
     >
-      <Input.Password placeholder="Password" />
+      <Input.Password placeholder={t(TranslationKeys.password)} />
     </Form.Item>
   );
 };

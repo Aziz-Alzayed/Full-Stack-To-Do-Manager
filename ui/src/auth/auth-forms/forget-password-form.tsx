@@ -8,6 +8,8 @@ import userStore from "../../stores/user-stores/user-store";
 import { ForgetPasswordDto } from "../../models/user-models/user-models";
 import { resetPasswordPath } from "../../apiConfig";
 import { RoutePaths, useLanguageAwareNavigate } from "../../routing/use-language-aware-navigate ";
+import { useTranslation } from "react-i18next";
+import { TranslationKeys } from "../../localization/translations/base-translation";
 
 interface ForgotPasswordFormProps {
   isOpen: boolean;
@@ -18,6 +20,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
   isOpen,
   onClose,
 }) => {
+  const { t } = useTranslation();
   const [form] = Form.useForm();
   const navigateWithLanguage = useLanguageAwareNavigate();
   const [loading, setLoading] = useState<boolean>(false);
@@ -33,13 +36,13 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
       const result = await userStore.ForgetPassword(forgetPasswordDto);
       if (result.passed) {
         SuccessNotification(
-          `Submitting forgot password request for: ${values.email}`,
-          "Check your email."
+          `${t(TranslationKeys.submittingForgotPassword)}: ${values.email}`,
+          `${t(TranslationKeys.checkYourEmail)}.`
         );
         navigateWithLanguage(RoutePaths.login);
       } else
         ErrorNotification(
-          "Failed to submit forgot password request.",
+          `${t(TranslationKeys.failedSubmitForgotPassword)}.`,
           result.message
         );
     } catch (error) {
@@ -51,7 +54,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
 
   return (
     <Modal
-      title="Forgot Password"
+      title={t(TranslationKeys.forgotPassword)}
       open={isOpen}
       onCancel={() => {
         onClose();
@@ -70,16 +73,16 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
             rules={[
               {
                 required: true,
-                message: "Please input your email!",
+                message: t(TranslationKeys.emailInputMessage),
                 type: "email",
               },
             ]}
           >
-            <Input placeholder="Email" />
+            <Input placeholder={t(TranslationKeys.email)} />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>
-              Submit
+             ${t(TranslationKeys.submit)}
             </Button>
           </Form.Item>
         </Form>
