@@ -23,8 +23,7 @@ namespace FSTD.API.Controllers.Accounts
         [ProducesDefaultResponseType(typeof(UserInfoDto))]
         public async Task<IActionResult> Get()
         {
-            var userEmail = User.Identity?.Name;
-            return Ok(await _mediator.Send(new GetUserQuery(userEmail)));
+            return Ok(await _mediator.Send(new GetUserQuery(User?.Identity?.Name ?? "")));
         }
 
         [HttpPut]
@@ -36,14 +35,14 @@ namespace FSTD.API.Controllers.Accounts
             {
                 return BadRequest(validationResult.Errors);
             }
-            await _mediator.Send(new UpdateUserEmailCommand(updateUserEmailDto, updateUserEmailDto.VerificationUrl, User.Identity?.Name));
+            await _mediator.Send(new UpdateUserEmailCommand(updateUserEmailDto, updateUserEmailDto.VerificationUrl, User?.Identity?.Name ?? ""));
 
             return Ok("User Email has been updated successfully, an email has been sent for verifying.");
         }
         [HttpPut("UpdateUserDetails")]
         public async Task<IActionResult> UpdateUserDetails([FromBody] UpdateUserDetailsDto updateUserDetails)
         {
-            await _mediator.Send(new UpdateUserCommand(updateUserDetails, User.Identity?.Name));
+            await _mediator.Send(new UpdateUserCommand(updateUserDetails, User?.Identity?.Name ?? ""));
             return Ok("User has been updated successfully.");
         }
 
@@ -56,7 +55,7 @@ namespace FSTD.API.Controllers.Accounts
                 return BadRequest(validationResult.Errors);
             }
 
-            await _mediator.Send(new UpdateUserPasswordCommand(updateUserPassword, User.Identity?.Name));
+            await _mediator.Send(new UpdateUserPasswordCommand(updateUserPassword, User?.Identity?.Name ?? ""));
             return Ok("User has been updated successfully.");
         }
 
@@ -64,7 +63,7 @@ namespace FSTD.API.Controllers.Accounts
         [HttpDelete]
         public async Task<IActionResult> Delete()
         {
-            await _mediator.Send(new DeleteUserCommand(User.Identity?.Name));
+            await _mediator.Send(new DeleteUserCommand(User?.Identity?.Name ?? ""));
             return Ok("User has been deleted successfully.");
         }
 

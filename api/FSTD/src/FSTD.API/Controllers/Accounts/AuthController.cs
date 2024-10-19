@@ -1,5 +1,6 @@
 ﻿using FSTD.Application.DTOs.Accounts.Auths;
 using FSTD.Application.MediatoR.Accounts.Auth.Commands;
+using FSTD.Exeptions.Models.HttpResponseExceptions;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -38,7 +39,7 @@ namespace FSTD.API.Controllers.Accounts
         [ProducesDefaultResponseType()]
         public async Task<IActionResult> Logout()
         {
-            await _mediator.Send(new LogoutCommand(User.Identity.Name));
+            await _mediator.Send(new LogoutCommand(User?.Identity?.Name ?? ""));
             return Ok();
         }
 
@@ -56,6 +57,8 @@ namespace FSTD.API.Controllers.Accounts
 
             // Get the current access token from the HttpContext
             var accessToken = await HttpContext.GetTokenAsync("Bearer", "access_token");
+            if (accessToken == null)
+                throw new ForbiddenAccessException();
 
             return Ok(await _mediator.Send(new RefreshTokenCommand(accessToken, refreshToken.RefreshToken)));
         }

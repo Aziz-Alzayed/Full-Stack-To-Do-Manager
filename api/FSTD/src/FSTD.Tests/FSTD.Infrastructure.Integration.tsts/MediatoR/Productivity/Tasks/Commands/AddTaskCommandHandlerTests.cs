@@ -102,7 +102,7 @@ namespace FSTD.Infrastructure.Integration.Tests.MediatoR.Productivity.Tasks.Comm
         {
             // Arrange
             _userQueriesRepoMock.Setup(repo => repo.GetUserByEmailAsync(It.IsAny<string>()))
-                .ReturnsAsync((ApplicationUser)null);
+                .ReturnsAsync(value: null);
 
             var addTaskDto = new AddTaskDto
             {

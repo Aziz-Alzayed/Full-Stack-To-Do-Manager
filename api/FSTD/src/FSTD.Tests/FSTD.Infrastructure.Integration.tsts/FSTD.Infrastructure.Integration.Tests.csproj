@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\FSTD.Infrastructure\FSTD.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\FSTD.Infrastructure\FSTD.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

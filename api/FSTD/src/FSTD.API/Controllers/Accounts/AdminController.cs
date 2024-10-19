@@ -23,7 +23,8 @@ namespace FSTD.API.Controllers.Accounts
         [ProducesDefaultResponseType(typeof(IEnumerable<UserFullInfoDto>))]
         public async Task<IActionResult> GetAllUser()
         {
-            var users = await _mediator.Send(new GetAllUsersQuery(User.Identity.Name));
+            var users =
+                await _mediator.Send(new GetAllUsersQuery(User?.Identity?.Name ?? ""));
             return Ok(users);
         }
 
@@ -36,7 +37,8 @@ namespace FSTD.API.Controllers.Accounts
             {
                 return BadRequest(validationResult.Errors);
             }
-            var result = await _mediator.Send(new AddNewUserCommand(addNewUserDto, User.Identity.Name));
+            var result =
+                await _mediator.Send(new AddNewUserCommand(addNewUserDto, User?.Identity?.Name ?? ""));
             return Ok(result);
         }
 
@@ -48,7 +50,7 @@ namespace FSTD.API.Controllers.Accounts
             {
                 return BadRequest(validationResult.Errors);
             }
-            await _mediator.Send(new UpdateUserByAdminCommand(updateUserDto, User.Identity.Name));
+            await _mediator.Send(new UpdateUserByAdminCommand(updateUserDto, User?.Identity?.Name ?? ""));
             return Ok();
         }
 
@@ -60,7 +62,7 @@ namespace FSTD.API.Controllers.Accounts
                 return BadRequest("userId is Empty");
             }
 
-            await _mediator.Send(new DeleteUserByIdCommand(userId, User.Identity.Name));
+            await _mediator.Send(new DeleteUserByIdCommand(userId, User?.Identity?.Name ?? ""));
             return Ok("User has been deleted successfully.");
         }
 

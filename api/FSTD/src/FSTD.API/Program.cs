@@ -37,11 +37,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseEndpoints(options =>
-{
-    options.MapControllers();
-    options.MapDefaultControllerRoute();
-});
+app.MapControllers();
+app.MapDefaultControllerRoute();
 
 app.Run();
 
@@ -71,3 +68,5 @@ void Services(WebApplicationBuilder builder)
 {
     builder.Services.AddScoped<ApiKeyAuthAttribute>();
 }
+
+public partial class Program { }

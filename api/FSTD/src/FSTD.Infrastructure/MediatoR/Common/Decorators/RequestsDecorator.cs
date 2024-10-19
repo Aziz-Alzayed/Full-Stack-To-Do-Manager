@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace FSTD.Infrastructure.MediatoR.Common.Decorators
 {
-    public class RequestsDecorator<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class RequestsDecorator<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
     {
         private readonly ILogger<RequestsDecorator<TRequest, TResponse>> _logger;
 
