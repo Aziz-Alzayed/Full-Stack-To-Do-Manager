@@ -108,3 +108,8 @@ The workflows utilize the following GitHub Secrets:
 - **`API_BACKEND_URL`**: Backend API URL for frontend build arguments.
 
 Ensure these secrets are properly set in your GitHub repository settings.
+
+---
+## Author & Contact
+**Author:** Aziz Alzayed
+**Email:** aziz.alzayed@a-fitech.com
