@@ -1,6 +1,6 @@
 ﻿using FSTD.Application.DTOs.Accounts.Admins;
 
-namespace FSTD.Application.Tests.DTOs.Accounts.Admins
+namespace FSTD.Application.Unit.Tests.DTOs.Accounts.Admins
 {
     public class UpdateUserDtoValidatorTests
     {

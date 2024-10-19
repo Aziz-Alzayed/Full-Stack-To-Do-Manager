@@ -7,7 +7,7 @@ using FSTD.Exeptions.Models.HttpResponseExceptions;
 using FSTD.Infrastructure.MediatoR.Productivity.Tasks.Commands;
 using Moq;
 
-namespace FSTD.Infrastructure.Tests.MediatoR.Productivity.Tasks.Commands
+namespace FSTD.Infrastructure.Unit.Tests.MediatoR.Productivity.Tasks.Commands
 {
     public class DeleteTaskCommandHandlerTests
     {

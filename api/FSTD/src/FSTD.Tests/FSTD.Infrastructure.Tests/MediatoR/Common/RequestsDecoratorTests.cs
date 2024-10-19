@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace FSTD.Infrastructure.Tests.MediatoR.Common
+namespace FSTD.Infrastructure.Unit.Tests.MediatoR.Common
 {
     public class RequestsDecoratorTests
     {

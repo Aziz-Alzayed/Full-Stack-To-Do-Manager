@@ -1,6 +1,6 @@
 ﻿using FSTD.Application.Validations;
 
-namespace FSTD.Application.Tests.Validations
+namespace FSTD.Application.Unit.Tests.Validations
 {
     public class PasswordRulesTests
     {

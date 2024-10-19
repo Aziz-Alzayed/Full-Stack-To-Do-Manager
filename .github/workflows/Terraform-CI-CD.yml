@@ -3,8 +3,6 @@ name: 'Terraform CI/CD'
 on:
   # Trigger on pull request to specific folder
   pull_request:
-    paths:
-      - 'terraform/**'
     branches:
       - main
   # Trigger when a tag with "deploy-v" prefix is pushed

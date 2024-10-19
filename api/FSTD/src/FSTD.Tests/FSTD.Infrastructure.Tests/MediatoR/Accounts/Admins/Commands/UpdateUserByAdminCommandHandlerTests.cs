@@ -9,7 +9,7 @@ using FSTD.Infrastructure.MediatoR.Accounts.Auth.Services;
 using FSTD.Infrastructure.MediatoR.Accounts.Services;
 using Moq;
 
-namespace FSTD.Infrastructure.Tests.MediatoR.Accounts.Admins.Commands
+namespace FSTD.Infrastructure.Unit.Tests.MediatoR.Accounts.Admins.Commands
 {
     public class UpdateUserByAdminCommandHandlerTests
     {

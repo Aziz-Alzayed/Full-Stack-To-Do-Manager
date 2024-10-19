@@ -1,6 +1,6 @@
 ﻿using FSTD.Application.DTOs.Accounts.Auths;
 
-namespace FSTD.Application.Tests.DTOs.Accounts.Auth
+namespace FSTD.Application.Unit.Tests.DTOs.Accounts.Auth
 {
     public class ResendVerificationEmailDtoValidatorTests
     {

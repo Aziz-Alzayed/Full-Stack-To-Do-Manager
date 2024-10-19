@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSTD.DataCore", "src\FSTD.D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{84393C75-CC61-4493-B7E6-7C554859D47E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSTD.Application.Tests", "src\FSTD.Tests\FSTD.Application.Tests\FSTD.Application.Tests.csproj", "{5BAD5C2E-3650-4C90-964E-951673334F79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSTD.Application.Unit.Tests", "src\FSTD.Tests\FSTD.Application.Tests\FSTD.Application.Unit.Tests.csproj", "{5BAD5C2E-3650-4C90-964E-951673334F79}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Externals", "Externals", "{FBE1A061-D265-43A7-9D82-84C91E57944D}"
 EndProject
@@ -38,7 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "Integra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FunctionalTests", "FunctionalTests", "{04619CEE-5FC1-44BD-9E2F-B9B26D1E4580}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSTD.Infrastructure.Tests", "src\FSTD.Tests\FSTD.Infrastructure.Tests\FSTD.Infrastructure.Tests.csproj", "{363DB6E8-2A66-46F7-BAA3-4E6D14EE98AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSTD.Infrastructure.Unit.Tests", "src\FSTD.Tests\FSTD.Infrastructure.Tests\FSTD.Infrastructure.Unit.Tests.csproj", "{363DB6E8-2A66-46F7-BAA3-4E6D14EE98AC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSTD.Infrastructure.Integration.Tests", "src\FSTD.Tests\FSTD.Infrastructure.Integration.tsts\FSTD.Infrastructure.Integration.Tests.csproj", "{BBADBBE9-4DB9-4BAE-AD25-EA1A08D62EC9}"
 EndProject

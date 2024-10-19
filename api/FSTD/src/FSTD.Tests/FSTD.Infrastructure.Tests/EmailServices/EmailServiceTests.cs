@@ -4,7 +4,7 @@ using Mailjet.Client;
 using Microsoft.Extensions.Configuration;
 using Moq;
 
-namespace FSTD.Infrastructure.Tests.EmailServices
+namespace FSTD.Infrastructure.Unit.Tests.EmailServices
 {
     public class EmailServiceTests
     {

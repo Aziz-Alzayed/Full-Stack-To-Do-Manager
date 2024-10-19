@@ -4,7 +4,7 @@ using FSTD.Application.Models.Admin;
 using FSTD.DataCore.Models.Users;
 using FSTD.Infrastructure.Mapping.Users;
 
-namespace FSTD.Infrastructure.Tests.Mapping.Users
+namespace FSTD.Infrastructure.Unit.Tests.Mapping.Users
 {
     public class AdminMappingProfileTests
     {

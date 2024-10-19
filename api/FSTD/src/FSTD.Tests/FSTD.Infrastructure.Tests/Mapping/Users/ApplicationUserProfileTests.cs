@@ -3,7 +3,7 @@ using FSTD.Application.DTOs.Accounts.Users;
 using FSTD.DataCore.Models.Users;
 using FSTD.Infrastructure.Mapping.Users;
 
-namespace FSTD.Infrastructure.Tests.Mapping.Users
+namespace FSTD.Infrastructure.Unit.Tests.Mapping.Users
 {
     public class ApplicationUserProfileTests
     {

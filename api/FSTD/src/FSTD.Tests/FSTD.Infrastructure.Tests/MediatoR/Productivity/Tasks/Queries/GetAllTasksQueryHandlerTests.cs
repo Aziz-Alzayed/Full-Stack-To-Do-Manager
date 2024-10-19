@@ -9,7 +9,7 @@ using FSTD.Exeptions.Models.HttpResponseExceptions;
 using FSTD.Infrastructure.MediatoR.Productivity.Tasks.Queries;
 using Moq;
 
-namespace FSTD.Infrastructure.Tests.MediatoR.Productivity.Tasks.Queries
+namespace FSTD.Infrastructure.Unit.Tests.MediatoR.Productivity.Tasks.Queries
 {
     public class GetAllTasksQueryHandlerTests
     {

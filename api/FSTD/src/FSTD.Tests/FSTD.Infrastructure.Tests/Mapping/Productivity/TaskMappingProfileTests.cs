@@ -4,7 +4,7 @@ using FSTD.DataCore.Models.ProductivityModels;
 using FSTD.DataCore.Models.Users;
 using FSTD.Infrastructure.Mapping.Productivity;
 
-namespace FSTD.Infrastructure.Tests.Mapping.Productivity
+namespace FSTD.Infrastructure.Unit.Tests.Mapping.Productivity
 {
     public class TaskMappingProfileTests
     {

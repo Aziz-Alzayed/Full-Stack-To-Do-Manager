@@ -8,7 +8,7 @@ using FSTD.Infrastructure.MediatoR.Accounts.Admins.Queries;
 using FSTD.Infrastructure.MediatoR.Accounts.Services;
 using Moq;
 
-namespace FSTD.Infrastructure.Tests.MediatoR.Accounts.Admins.Queries
+namespace FSTD.Infrastructure.Unit.Tests.MediatoR.Accounts.Admins.Queries
 {
     public class GetAllUsersQueryHandlerTests
     {

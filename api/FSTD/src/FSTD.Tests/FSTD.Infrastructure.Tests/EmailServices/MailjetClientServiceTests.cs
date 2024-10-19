@@ -4,7 +4,7 @@ using Mailjet.Client.Resources;
 using Moq;
 using Newtonsoft.Json.Linq;
 
-namespace FSTD.Infrastructure.Tests.EmailServices
+namespace FSTD.Infrastructure.Unit.Tests.EmailServices
 {
     public class MailjetClientServiceTests
     {

@@ -5,7 +5,7 @@ using FSTD.Infrastructure.MediatoR.Accounts.Admins.Commands;
 using FSTD.Infrastructure.MediatoR.Accounts.Services;
 using Moq;
 
-namespace FSTD.Infrastructure.Tests.MediatoR.Accounts.Admins.Commands
+namespace FSTD.Infrastructure.Unit.Tests.MediatoR.Accounts.Admins.Commands
 {
 
     public class DeleteUserByIdCommandHandlerTests

@@ -1,6 +1,6 @@
 ﻿using FSTD.Application.DTOs.Productivity.Tasks;
 
-namespace FSTD.Application.Tests.DTOs.Productivity.Tasks
+namespace FSTD.Application.Unit.Tests.DTOs.Productivity.Tasks
 {
     public class AddTaskDtoValidatorTests
     {

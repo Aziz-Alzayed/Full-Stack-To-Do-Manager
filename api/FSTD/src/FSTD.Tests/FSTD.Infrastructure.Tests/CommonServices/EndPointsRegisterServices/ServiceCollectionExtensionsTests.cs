@@ -1,7 +1,7 @@
 ﻿using FSTD.Infrastructure.CommonServices.EndPointsRegisterServices;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FSTD.Infrastructure.Tests.CommonServices
+namespace FSTD.Infrastructure.Unit.Tests.CommonServices
 {
     namespace FSTD.Infrastructure.CommonServices.EndPointsRegisterServices.Tests
     {
