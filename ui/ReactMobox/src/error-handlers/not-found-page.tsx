@@ -1,6 +1,9 @@
 import React from "react";
 import { Result, Button } from "antd";
-import { RoutePaths, useLanguageAwareNavigate } from "../routing/use-language-aware-navigate ";
+import {
+  RoutePaths,
+  useLanguageAwareNavigate,
+} from "../routing/use-language-aware-navigate ";
 
 const NotFoundPage: React.FC = () => {
   const navigateWithLanguage = useLanguageAwareNavigate();

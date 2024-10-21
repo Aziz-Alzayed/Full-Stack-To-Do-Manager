@@ -11,7 +11,8 @@ const { Content } = Layout;
 
 const AppLayout: FC<PropsWithChildren> = ({ children }) => {
   const { roles } = useAuth();
-  const isAdmin = roles?.includes(AppRoles.Admin) || roles?.includes(AppRoles.Super);
+  const isAdmin =
+    roles?.includes(AppRoles.Admin) || roles?.includes(AppRoles.Super);
   const contentLayoutStyle: React.CSSProperties = {
     marginLeft: isAdmin ? SideMenuWidth : 0,
     overflowY: "auto",
@@ -21,13 +22,13 @@ const AppLayout: FC<PropsWithChildren> = ({ children }) => {
     background: "#fff",
     overflowY: "auto",
   };
- 
+
   const layoutStyle: React.CSSProperties = {
-    minHeight: "100vh"
+    minHeight: "100vh",
   };
 
   const mainContainerStyle: React.CSSProperties = {
-    marginTop: "4.5em" 
+    marginTop: "4.5em",
   };
 
   return (

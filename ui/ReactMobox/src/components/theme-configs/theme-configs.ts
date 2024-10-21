@@ -15,13 +15,13 @@ export const ThemeConfigs: ThemeConfig = {
       itemColor: "#FFFFFF",
       itemHoverColor: "#E69E7f",
       colorPrimary: "#FFFFFF",
-      itemSelectedBg:"#FFFFFF",
-      itemSelectedColor:"black",
+      itemSelectedBg: "#FFFFFF",
+      itemSelectedColor: "black",
     },
     Button: {
       colorPrimary: "var(--color-primary)", //creame
       colorPrimaryHover: "#E69E7f", // copper
-      colorPrimaryText:"#FFFFFF"
+      colorPrimaryText: "#FFFFFF",
     },
     FloatButton: {
       colorPrimary: "var(--color-primary)",

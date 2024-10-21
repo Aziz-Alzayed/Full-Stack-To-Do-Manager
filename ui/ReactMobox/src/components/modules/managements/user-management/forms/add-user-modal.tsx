@@ -35,7 +35,7 @@ const AddUserModal: FC<AddUserModalProps> = ({
     if (modifiedBySuper) {
       setListOfAllowedRoles(allRoles);
     } else {
-        const withoutSuper = allRoles.filter((r) => r != AppRoles.Super);
+      const withoutSuper = allRoles.filter((r) => r != AppRoles.Super);
       setListOfAllowedRoles(withoutSuper);
     }
   }, [modifiedBySuper]);

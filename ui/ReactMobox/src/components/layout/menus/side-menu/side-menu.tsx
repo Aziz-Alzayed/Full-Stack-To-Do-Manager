@@ -5,11 +5,14 @@ import { useLocation } from "react-router-dom";
 import { useAuth } from "../../../../auth/auth-provider/auth-provider";
 import { isAdmin, isSuper } from "../../../../auth/auth-services/auth-service";
 import { MenuItemType } from "antd/es/menu/interface";
-import { RoutePaths, useLanguageAwareNavigate } from "../../../../routing/use-language-aware-navigate ";
+import {
+  RoutePaths,
+  useLanguageAwareNavigate,
+} from "../../../../routing/use-language-aware-navigate ";
 import { useTranslation } from "react-i18next";
 import { TranslationKeys } from "../../../../localization/translations/base-translation";
 
-export const SideMenuWidth= "13em";
+export const SideMenuWidth = "13em";
 const SideMenu: FC = () => {
   const { user } = useAuth();
   const location = useLocation();
@@ -50,10 +53,7 @@ const SideMenu: FC = () => {
   return !userIsAdmin ? (
     <></>
   ) : (
-    <Sider
-      style={menuStyle}
-      width={SideMenuWidth}
-    >
+    <Sider style={menuStyle} width={SideMenuWidth}>
       <Menu
         mode="inline"
         selectedKeys={[currentSelectedKey]}

@@ -1,9 +1,7 @@
 import { Drawer, Menu } from "antd";
 import { FC } from "react";
 import UserDropdownMenu from "./user-dropdown-menu";
-import type {
-  DrawerStyles,
-} from "antd/es/drawer/DrawerPanel";
+import type { DrawerStyles } from "antd/es/drawer/DrawerPanel";
 import { MenuItemType } from "antd/es/menu/interface";
 import LanguageSwitcher from "./language-switcher";
 interface DrawerMenuProps {
@@ -25,8 +23,6 @@ export const DrawerMenu: FC<DrawerMenuProps> = ({
   toggleDrawer,
   visible,
 }) => {
-
-
   const drawerStyles: DrawerStyles = {
     mask: {},
     content: {},

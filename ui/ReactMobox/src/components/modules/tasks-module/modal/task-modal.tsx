@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { Modal, Button, Form, Input, Checkbox, DatePicker } from 'antd';
-import dayjs from 'dayjs';
-import { ErrorNotification, SuccessNotification } from '../../../notification/notification-components';
-import tasksStore from '../../../../stores/user-stores/tasks-store';
-import { TaskModel } from '../../../../models/user-models/task-models';
+import React, { useEffect, useState } from "react";
+import { Modal, Button, Form, Input, Checkbox, DatePicker } from "antd";
+import dayjs from "dayjs";
+import {
+  ErrorNotification,
+  SuccessNotification,
+} from "../../../notification/notification-components";
+import tasksStore from "../../../../stores/user-stores/tasks-store";
+import { TaskModel } from "../../../../models/user-models/task-models";
 
 interface TaskModalProps {
   visible: boolean;
   onClose: () => void;
   task?: TaskModel; // Optional task for editing mode
-  mode: 'add' | 'edit'; // Mode to switch between adding and editing
+  mode: "add" | "edit"; // Mode to switch between adding and editing
 }
 
-const TaskModal: React.FC<TaskModalProps> = ({ visible, onClose, task, mode }) => {
+const TaskModal: React.FC<TaskModalProps> = ({
+  visible,
+  onClose,
+  task,
+  mode,
+}) => {
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,23 +43,37 @@ const TaskModal: React.FC<TaskModalProps> = ({ visible, onClose, task, mode }) =
       .then(async (values) => {
         const newTask: TaskModel = {
           ...values,
-          validUntil: values.validUntil ? dayjs(values.validUntil).format('YYYY-MM-DD') : undefined,
-          id: mode === 'edit' && task ? task.id : "", // Set id for edit, empty for new task
+          validUntil: values.validUntil
+            ? dayjs(values.validUntil).format("YYYY-MM-DD")
+            : undefined,
+          id: mode === "edit" && task ? task.id : "", // Set id for edit, empty for new task
         };
 
         try {
-          const result = mode === 'add'
-            ? await tasksStore.addTask(newTask)
-            : await tasksStore.updateTask(newTask.id, newTask);
+          const result =
+            mode === "add"
+              ? await tasksStore.addTask(newTask)
+              : await tasksStore.updateTask(newTask.id, newTask);
 
           if (result.passed) {
-            SuccessNotification(`The task has been ${mode === 'add' ? 'added' : 'updated'} successfully!`);
+            SuccessNotification(
+              `The task has been ${
+                mode === "add" ? "added" : "updated"
+              } successfully!`
+            );
             onClose();
           } else {
-            ErrorNotification(`Error while ${mode === 'add' ? 'adding' : 'editing'} the task!`, result.message);
+            ErrorNotification(
+              `Error while ${mode === "add" ? "adding" : "editing"} the task!`,
+              result.message
+            );
           }
-        } catch{
-          ErrorNotification(`Something went wrong while ${mode === 'add' ? 'adding' : 'editing'} the task!`);
+        } catch {
+          ErrorNotification(
+            `Something went wrong while ${
+              mode === "add" ? "adding" : "editing"
+            } the task!`
+          );
         }
       })
       .catch((info) => {
@@ -70,14 +92,19 @@ const TaskModal: React.FC<TaskModalProps> = ({ visible, onClose, task, mode }) =
   return (
     <Modal
       open={visible}
-      title={mode === 'add' ? 'Add New Task' : 'Edit Task'}
+      title={mode === "add" ? "Add New Task" : "Edit Task"}
       onCancel={handleCancel}
       footer={[
         <Button key="back" onClick={handleCancel}>
           Cancel
         </Button>,
-        <Button key="submit" type="primary" loading={isLoading} onClick={handleSubmit}>
-          {mode === 'add' ? 'Save' : 'Update'}
+        <Button
+          key="submit"
+          type="primary"
+          loading={isLoading}
+          onClick={handleSubmit}
+        >
+          {mode === "add" ? "Save" : "Update"}
         </Button>,
       ]}
     >
@@ -85,14 +112,16 @@ const TaskModal: React.FC<TaskModalProps> = ({ visible, onClose, task, mode }) =
         <Form.Item
           name="name"
           label="Task Name"
-          rules={[{ required: true, message: 'Please input the task name!' }]}
+          rules={[{ required: true, message: "Please input the task name!" }]}
         >
           <Input placeholder="Enter task name" />
         </Form.Item>
         <Form.Item
           name="description"
           label="Task Description"
-          rules={[{ required: true, message: 'Please input the task description!' }]}
+          rules={[
+            { required: true, message: "Please input the task description!" },
+          ]}
         >
           <Input placeholder="Enter task description" />
         </Form.Item>
@@ -100,7 +129,12 @@ const TaskModal: React.FC<TaskModalProps> = ({ visible, onClose, task, mode }) =
           <Checkbox>Task Completed</Checkbox>
         </Form.Item>
         <Form.Item name="validUntil" label="Valid Until">
-          <DatePicker format="DD-MM-YYYY" disabledDate={(current) => current && current < dayjs().startOf('day')} />
+          <DatePicker
+            format="DD-MM-YYYY"
+            disabledDate={(current) =>
+              current && current < dayjs().startOf("day")
+            }
+          />
         </Form.Item>
       </Form>
     </Modal>

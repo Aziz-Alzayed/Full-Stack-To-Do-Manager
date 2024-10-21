@@ -23,7 +23,10 @@ import {
   isAuthenticated,
 } from "../auth-services/auth-service";
 import { getUserData, saveUserData } from "../user-utils/user-data-helper";
-import { RoutePaths, useLanguageAwareNavigate } from "../../routing/use-language-aware-navigate ";
+import {
+  RoutePaths,
+  useLanguageAwareNavigate,
+} from "../../routing/use-language-aware-navigate ";
 
 export const AuthContext = createContext<IAuthContextType>({
   user: undefined,

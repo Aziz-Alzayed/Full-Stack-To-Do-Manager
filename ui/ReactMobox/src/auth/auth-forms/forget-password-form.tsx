@@ -7,7 +7,10 @@ import {
 import userStore from "../../stores/user-stores/user-store";
 import { ForgetPasswordDto } from "../../models/user-models/user-models";
 import { resetPasswordPath } from "../../apiConfig";
-import { RoutePaths, useLanguageAwareNavigate } from "../../routing/use-language-aware-navigate ";
+import {
+  RoutePaths,
+  useLanguageAwareNavigate,
+} from "../../routing/use-language-aware-navigate ";
 import { useTranslation } from "react-i18next";
 import { TranslationKeys } from "../../localization/translations/base-translation";
 
@@ -82,7 +85,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>
-             ${t(TranslationKeys.submit)}
+              ${t(TranslationKeys.submit)}
             </Button>
           </Form.Item>
         </Form>

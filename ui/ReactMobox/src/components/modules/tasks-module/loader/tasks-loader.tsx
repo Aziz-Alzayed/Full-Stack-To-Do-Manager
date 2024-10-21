@@ -6,7 +6,7 @@ import { Spin } from "antd";
 import { Outlet } from "react-router-dom";
 
 const TasksLoader: React.FC = observer(() => {
-  const { tasks,loadAllTasks,tasksLoading } = tasksStore;
+  const { tasks, loadAllTasks, tasksLoading } = tasksStore;
 
   useEffect(() => {
     if (tasks && !tasks.length) {

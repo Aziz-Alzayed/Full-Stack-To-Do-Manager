@@ -2,7 +2,12 @@ import { makeAutoObservable, observable, runInAction, set } from "mobx";
 import { HttpStatusCode } from "axios";
 import { TaskModel } from "../../models/user-models/task-models";
 import { StoresResults } from "../stores-utils/stores-results";
-import { addTaskApi, deleteTaskApi, getAllTasksApi, updateTaskApi } from "../../services/user-services/task-service";
+import {
+  addTaskApi,
+  deleteTaskApi,
+  getAllTasksApi,
+  updateTaskApi,
+} from "../../services/user-services/task-service";
 
 class TaskStore {
   taskMap: Record<string, TaskModel> = observable.object({});
@@ -62,7 +67,10 @@ class TaskStore {
 
     try {
       const result = await addTaskApi(taskData);
-      if (result.status === HttpStatusCode.Created || result.status === HttpStatusCode.Ok) {
+      if (
+        result.status === HttpStatusCode.Created ||
+        result.status === HttpStatusCode.Ok
+      ) {
         const newTask = result.data as TaskModel;
 
         runInAction(() => {
@@ -86,7 +94,8 @@ class TaskStore {
       }
     } catch (error) {
       console.error("Error adding task", error);
-      const errorMessage = error instanceof Error ? error.message : String(error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
       runInAction(() => {
         this.error = errorMessage;
       });
@@ -103,7 +112,10 @@ class TaskStore {
   };
 
   // Update an existing task
-  updateTask = async (taskId: string, taskData: Partial<TaskModel>): Promise<StoresResults> => {
+  updateTask = async (
+    taskId: string,
+    taskData: Partial<TaskModel>
+  ): Promise<StoresResults> => {
     if (this.tasksLoading) {
       return {
         passed: false,
@@ -119,7 +131,9 @@ class TaskStore {
 
     try {
       const result = await updateTaskApi(taskData);
-      if ([HttpStatusCode.Ok, HttpStatusCode.Accepted].includes(result.status)) {
+      if (
+        [HttpStatusCode.Ok, HttpStatusCode.Accepted].includes(result.status)
+      ) {
         runInAction(() => {
           Object.assign(this.taskMap[taskId], taskData);
         });
@@ -138,7 +152,8 @@ class TaskStore {
       }
     } catch (error) {
       console.error("Error updating task", error);
-      const errorMessage = error instanceof Error ? error.message : String(error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
       runInAction(() => {
         this.error = errorMessage;
       });
@@ -190,7 +205,8 @@ class TaskStore {
       }
     } catch (error) {
       console.error("Error deleting task", error);
-      const errorMessage = error instanceof Error ? error.message : String(error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
       runInAction(() => {
         this.error = errorMessage;
       });

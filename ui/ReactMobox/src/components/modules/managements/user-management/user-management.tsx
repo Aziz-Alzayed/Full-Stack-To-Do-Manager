@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Table, Button, Tag, Popconfirm } from "antd";
-import { CheckCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import {
+  CheckCircleOutlined,
+  ExclamationCircleOutlined,
+} from "@ant-design/icons";
 import AddUserModal from "./forms/add-user-modal";
 import { observer } from "mobx-react-lite";
 import { IUserFullInfos } from "../../../../models/admin/admin-models";
@@ -16,7 +19,7 @@ import { useAuth } from "../../../../auth/auth-provider/auth-provider";
 import CommonPageTemplate from "../../../helpers/common-page-template";
 import { getColumnSearchProps } from "../../../table-helpers/table-filter-helper";
 
-const UserManagement : React.FC = observer(() => {
+const UserManagement: React.FC = observer(() => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { users } = adminStore;
@@ -25,8 +28,8 @@ const UserManagement : React.FC = observer(() => {
     undefined
   );
   const [isUserSuper, setIsUserSuper] = useState<boolean>(false);
-  const [, setSearchText] = useState('');
-  const [, setSearchedColumn] = useState('');
+  const [, setSearchText] = useState("");
+  const [, setSearchedColumn] = useState("");
   useEffect(() => {
     const checkRoles = async () => {
       try {
@@ -94,7 +97,11 @@ const UserManagement : React.FC = observer(() => {
       inputType: "text",
       sorter: (a: IUserFullInfos, b: IUserFullInfos) =>
         a.firstName.localeCompare(b.firstName),
-      ...getColumnSearchProps<IUserFullInfos>('firstName',setSearchText,setSearchedColumn),
+      ...getColumnSearchProps<IUserFullInfos>(
+        "firstName",
+        setSearchText,
+        setSearchedColumn
+      ),
     },
     {
       title: "Last Name",
@@ -103,7 +110,11 @@ const UserManagement : React.FC = observer(() => {
       inputType: "text",
       sorter: (a: IUserFullInfos, b: IUserFullInfos) =>
         a.lastName.localeCompare(b.lastName),
-      ...getColumnSearchProps<IUserFullInfos>('lastName',setSearchText,setSearchedColumn),
+      ...getColumnSearchProps<IUserFullInfos>(
+        "lastName",
+        setSearchText,
+        setSearchedColumn
+      ),
     },
     {
       title: "Email",
@@ -112,7 +123,11 @@ const UserManagement : React.FC = observer(() => {
       inputType: "text",
       sorter: (a: IUserFullInfos, b: IUserFullInfos) =>
         a.email.localeCompare(b.email),
-      ...getColumnSearchProps<IUserFullInfos>('email',setSearchText,setSearchedColumn),
+      ...getColumnSearchProps<IUserFullInfos>(
+        "email",
+        setSearchText,
+        setSearchedColumn
+      ),
     },
     {
       title: "Phone Number",
@@ -121,7 +136,11 @@ const UserManagement : React.FC = observer(() => {
       inputType: "text",
       sorter: (a: IUserFullInfos, b: IUserFullInfos) =>
         a.phoneNumber.localeCompare(b.phoneNumber),
-      ...getColumnSearchProps<IUserFullInfos>('phoneNumber',setSearchText,setSearchedColumn),
+      ...getColumnSearchProps<IUserFullInfos>(
+        "phoneNumber",
+        setSearchText,
+        setSearchedColumn
+      ),
     },
     {
       title: "Email Confirmed",
@@ -129,7 +148,11 @@ const UserManagement : React.FC = observer(() => {
       key: "isEmailConfirmed",
       inputType: "checkbox",
       render: (isConfirmed: boolean) =>
-        isConfirmed ? <CheckCircleOutlined style={{color: "green"}} /> :<ExclamationCircleOutlined  style={{color: "red"}} />,
+        isConfirmed ? (
+          <CheckCircleOutlined style={{ color: "green" }} />
+        ) : (
+          <ExclamationCircleOutlined style={{ color: "red" }} />
+        ),
     },
     {
       title: "Roles",

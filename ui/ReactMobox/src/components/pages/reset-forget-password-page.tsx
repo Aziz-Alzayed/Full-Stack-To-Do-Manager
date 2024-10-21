@@ -7,7 +7,10 @@ import {
 } from "../notification/notification-components";
 import userStore from "../../stores/user-stores/user-store";
 import PasswordInput from "../../auth/auth-forms/password-rules/password-input";
-import { RoutePaths, useLanguageAwareNavigate } from "../../routing/use-language-aware-navigate ";
+import {
+  RoutePaths,
+  useLanguageAwareNavigate,
+} from "../../routing/use-language-aware-navigate ";
 
 interface ResetPasswordFormData {
   password: string;

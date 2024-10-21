@@ -8,7 +8,10 @@ import { DrawerMenu } from "./drawer-menu";
 import { MenuItemType } from "antd/es/menu/interface";
 import { useAuth } from "../../../../auth/auth-provider/auth-provider";
 import LanguageSwitcher from "./language-switcher";
-import { RoutePaths, useLanguageAwareNavigate } from "../../../../routing/use-language-aware-navigate ";
+import {
+  RoutePaths,
+  useLanguageAwareNavigate,
+} from "../../../../routing/use-language-aware-navigate ";
 import { useTranslation } from "react-i18next";
 import { TranslationKeys } from "../../../../localization/translations/base-translation";
 
@@ -75,7 +78,10 @@ const HeaderMenu: FC = () => {
   return (
     <>
       <Header style={headerStyle}>
-        <div style={logoDivStyle} onClick={() => navigateWithLanguage(RoutePaths.home)}>
+        <div
+          style={logoDivStyle}
+          onClick={() => navigateWithLanguage(RoutePaths.home)}
+        >
           <img src={logoImage} alt="Logo" style={logoImageStyle} />
         </div>
         {!isMobile ? (

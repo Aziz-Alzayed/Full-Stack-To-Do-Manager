@@ -5,8 +5,8 @@ export class EnglishTranslation extends BaseTranslation {
   userManagement = "User Management";
   tasks = "Tasks";
   password = "Password";
-  submit= "Submit";
-  email="Email"
+  submit = "Submit";
+  email = "Email";
   addTask = "Add Task";
   passwordInputMessage = "Please input your password!";
   passwordWarningMessage = "Password must length be at least";
@@ -18,8 +18,14 @@ export class EnglishTranslation extends BaseTranslation {
   passwordAtLeastOneNonAlphNum =
     "Password must contain at least one non-alphanumeric character!";
   submittingForgotPassword = "Submitting forgot password request for";
-  failedSubmitForgotPassword ="Failed to submit forgot password request";
-  emailInputMessage= "Please input your email";
-  checkYourEmail= "Check your email";
-  forgotPassword= "Forgot password";
+  failedSubmitForgotPassword = "Failed to submit forgot password request";
+  emailInputMessage = "Please input your email";
+  checkYourEmail = "Check your email";
+  forgotPassword = "Forgot password";
+  failedLoginMessage = "Failed to login. Please check your credentials";
+  readMe = "Read Me";
+  login = "Login";
+  cancel = "Cancel";
+  confirmLogout = "Confirm Logout";
+  confirmLogoutQuestion = "Are you sure you want to log out";
 }

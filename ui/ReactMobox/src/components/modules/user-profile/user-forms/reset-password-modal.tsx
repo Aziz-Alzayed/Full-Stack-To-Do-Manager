@@ -40,7 +40,7 @@ const ResetPasswordModal: FC<ResetPasswordModalProps> = ({
       form.resetFields();
       setSubmitError(undefined);
       closeResetPasswordModal();
-    } catch{
+    } catch {
       // Handle errors (e.g., show error message)
       setSubmitError("An error occurred while resetting the password.");
     }

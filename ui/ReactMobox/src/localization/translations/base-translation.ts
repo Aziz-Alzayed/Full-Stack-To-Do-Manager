@@ -16,6 +16,12 @@ interface BaseTranslationInterface {
   emailInputMessage: string;
   checkYourEmail: string;
   forgotPassword: string;
+  failedLoginMessage: string;
+  readMe: string;
+  login: string;
+  cancel: string;
+  confirmLogout: string;
+  confirmLogoutQuestion: string;
 }
 
 export abstract class BaseTranslation implements BaseTranslationInterface {
@@ -34,8 +40,14 @@ export abstract class BaseTranslation implements BaseTranslationInterface {
   abstract submittingForgotPassword: string;
   abstract failedSubmitForgotPassword: string;
   abstract emailInputMessage: string;
-  abstract checkYourEmail:string;
+  abstract checkYourEmail: string;
   abstract forgotPassword: string;
+  abstract failedLoginMessage: string;
+  abstract readMe: string;
+  abstract login: string;
+  abstract cancel: string;
+  abstract confirmLogout: string;
+  abstract confirmLogoutQuestion: string;
 }
 
 export const TranslationKeys: BaseTranslationInterface = {
@@ -55,5 +67,11 @@ export const TranslationKeys: BaseTranslationInterface = {
   failedSubmitForgotPassword: "failedSubmitForgotPassword",
   emailInputMessage: "emailInputMessage",
   checkYourEmail: "checkYourEmail",
-  forgotPassword: "forgotPassword"
+  forgotPassword: "forgotPassword",
+  failedLoginMessage: "failedLoginMessage",
+  readMe: "readMe",
+  login: "login",
+  cancel: "cancel",
+  confirmLogout: "confirmLogout",
+  confirmLogoutQuestion: "confirmLogoutQuestion",
 };

@@ -84,7 +84,6 @@ export const isAuthenticated = async (): Promise<boolean> => {
   }
 };
 
-
 export const isAdmin = async (): Promise<boolean> => {
   const roles = await getRoles();
   return roles.includes(AppRoles.Admin);

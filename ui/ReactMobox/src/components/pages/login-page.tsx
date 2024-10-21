@@ -1,6 +1,9 @@
 import { FC } from "react";
 import LoginForm from "../../auth/auth-forms/login-form";
-import { RoutePaths, useLanguageAwareNavigate } from "../../routing/use-language-aware-navigate ";
+import {
+  RoutePaths,
+  useLanguageAwareNavigate,
+} from "../../routing/use-language-aware-navigate ";
 
 const LoginPage: FC = () => {
   const navigateWithLanguage = useLanguageAwareNavigate();

@@ -5,7 +5,10 @@ import { useAuth } from "../../../../auth/auth-provider/auth-provider";
 import LoginForm from "../../../../auth/auth-forms/login-form";
 import LogoutForm from "../../../../auth/auth-forms/logout-form";
 import { ItemType, MenuItemType } from "antd/es/menu/interface";
-import { RoutePaths, useLanguageAwareNavigate } from "../../../../routing/use-language-aware-navigate ";
+import {
+  RoutePaths,
+  useLanguageAwareNavigate,
+} from "../../../../routing/use-language-aware-navigate ";
 
 interface UserDropdownMenuProps {
   style?: React.CSSProperties; // Add this line
@@ -51,7 +54,9 @@ const UserDropdownMenu: FC<UserDropdownMenuProps> = ({ style }) => {
     : undefined;
 
   // Helper function to add dividers only when necessary
-  const addDividerIfNeeded = (items: Array<ItemType | undefined>): ItemType[] => {
+  const addDividerIfNeeded = (
+    items: Array<ItemType | undefined>
+  ): ItemType[] => {
     return items.reduce((acc: ItemType[], item, index) => {
       if (item) {
         // Add a divider before an item if it's not the first one and previous item exists

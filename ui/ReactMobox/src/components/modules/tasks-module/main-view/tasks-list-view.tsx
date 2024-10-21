@@ -22,9 +22,11 @@ import { getColumnSearchProps } from "../../../table-helpers/table-filter-helper
 const TaskListView: React.FC = observer(() => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
   const [modalMode, setModalMode] = useState<"add" | "edit">("add");
-  const [currentTask, setCurrentTask] = useState<TaskModel | undefined>(undefined);
-  const [, setSearchText] = useState('');
-  const [, setSearchedColumn] = useState('');
+  const [currentTask, setCurrentTask] = useState<TaskModel | undefined>(
+    undefined
+  );
+  const [, setSearchText] = useState("");
+  const [, setSearchedColumn] = useState("");
   const { tasks } = tasksStore;
 
   const handleDelete = useCallback(async (id: string) => {
@@ -53,7 +55,7 @@ const TaskListView: React.FC = observer(() => {
     setModalMode("add"); // Set mode to add
     setIsAddModalVisible(true); // Open modal
   };
-  
+
   const columns = [
     {
       title: "Name",
@@ -62,7 +64,11 @@ const TaskListView: React.FC = observer(() => {
       editable: true,
       inputType: "text",
       sorter: (a: TaskModel, b: TaskModel) => a.name.localeCompare(b.name),
-      ...getColumnSearchProps<TaskModel>('name',setSearchText,setSearchedColumn),
+      ...getColumnSearchProps<TaskModel>(
+        "name",
+        setSearchText,
+        setSearchedColumn
+      ),
     },
     {
       title: "Description",
@@ -72,7 +78,11 @@ const TaskListView: React.FC = observer(() => {
       inputType: "text",
       sorter: (a: TaskModel, b: TaskModel) =>
         a.description.localeCompare(b.description),
-      ...getColumnSearchProps<TaskModel>('description',setSearchText,setSearchedColumn),
+      ...getColumnSearchProps<TaskModel>(
+        "description",
+        setSearchText,
+        setSearchedColumn
+      ),
     },
     {
       title: "Is Done",
@@ -86,7 +96,8 @@ const TaskListView: React.FC = observer(() => {
         ) : (
           <ExclamationCircleOutlined style={{ color: "red" }} />
         ),
-      sorter: (a: TaskModel, b: TaskModel) => Number(a.isDone) - Number(b.isDone),
+      sorter: (a: TaskModel, b: TaskModel) =>
+        Number(a.isDone) - Number(b.isDone),
     },
     {
       title: "Valid Until",

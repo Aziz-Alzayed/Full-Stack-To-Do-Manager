@@ -13,6 +13,8 @@ import {
 } from "antd";
 import { ILoginRequest } from "../../models/auth-models/auth-models";
 import ForgotPasswordForm from "./forget-password-form";
+import { useTranslation } from "react-i18next";
+import { TranslationKeys } from "../../localization/translations/base-translation";
 
 interface LoginFormProps {
   isOpen: boolean;
@@ -21,6 +23,7 @@ interface LoginFormProps {
 
 const LoginForm: FC<LoginFormProps> = ({ isOpen, onClose }) => {
   const { handleLogin } = useAuth();
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
@@ -33,7 +36,7 @@ const LoginForm: FC<LoginFormProps> = ({ isOpen, onClose }) => {
       await handleLogin(values);
       onClose();
     } catch (error) {
-      setLoginError("Failed to login. Please check your credentials.");
+      setLoginError(`${t(TranslationKeys.failedLoginMessage)}.`);
       console.error("Error while logging in", error);
     } finally {
       setIsLoading(false);
@@ -67,11 +70,11 @@ const LoginForm: FC<LoginFormProps> = ({ isOpen, onClose }) => {
 
             <Form.Item
               name="email"
-              label="Email"
+              label={t(TranslationKeys.email)}
               rules={[
                 {
                   required: true,
-                  message: "Please input your Email!",
+                  message: t(TranslationKeys.emailInputMessage),
                   type: "email",
                 },
               ]}
@@ -81,9 +84,9 @@ const LoginForm: FC<LoginFormProps> = ({ isOpen, onClose }) => {
 
             <Form.Item
               name="password"
-              label="Password"
+              label={t(TranslationKeys.password)}
               rules={[
-                { required: true, message: "Please input your Password!" },
+                { required: true, message: t(TranslationKeys.passwordInputMessage) },
               ]}
             >
               <Input.Password placeholder="Password" />
@@ -92,7 +95,7 @@ const LoginForm: FC<LoginFormProps> = ({ isOpen, onClose }) => {
             <Row justify="space-between">
               <Col>
                 <Form.Item name="remember" valuePropName="checked">
-                  <Checkbox>Remember me</Checkbox>
+                  <Checkbox>{t(TranslationKeys.readMe)}</Checkbox>
                 </Form.Item>
               </Col>
               <Col>
@@ -101,7 +104,7 @@ const LoginForm: FC<LoginFormProps> = ({ isOpen, onClose }) => {
                     onClick={() => setIsForgotPasswordModalOpen(true)}
                     style={{ float: "right" }}
                   >
-                    Forgot Password?
+                    {t(TranslationKeys.forgotPassword)}?
                   </a>
                 </Form.Item>
               </Col>
@@ -109,7 +112,7 @@ const LoginForm: FC<LoginFormProps> = ({ isOpen, onClose }) => {
 
             <Form.Item>
               <Button type="primary" htmlType="submit" block>
-                Log in
+              {t(TranslationKeys.login)}
               </Button>
             </Form.Item>
           </Form>

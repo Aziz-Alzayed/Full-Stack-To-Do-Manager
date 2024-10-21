@@ -3,7 +3,10 @@ import { FC, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "../../auth/auth-provider/auth-provider";
 import userStore from "../../stores/user-stores/user-store";
-import { RoutePaths, useLanguageAwareNavigate } from "../../routing/use-language-aware-navigate ";
+import {
+  RoutePaths,
+  useLanguageAwareNavigate,
+} from "../../routing/use-language-aware-navigate ";
 
 const EmailVerificationPage: FC = () => {
   const [searchParams] = useSearchParams();

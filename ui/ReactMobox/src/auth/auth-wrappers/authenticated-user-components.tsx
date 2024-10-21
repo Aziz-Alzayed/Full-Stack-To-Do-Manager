@@ -2,7 +2,10 @@ import { Button, Spin } from "antd";
 import { ComponentType, FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth-provider/auth-provider";
-import { RoutePaths, useLanguageAwareNavigate } from "../../routing/use-language-aware-navigate ";
+import {
+  RoutePaths,
+  useLanguageAwareNavigate,
+} from "../../routing/use-language-aware-navigate ";
 
 const AuthenticatedComponent = <P extends object>(
   WrappedComponent: ComponentType<P>

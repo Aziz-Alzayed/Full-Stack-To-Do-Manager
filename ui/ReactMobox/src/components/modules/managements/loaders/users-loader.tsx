@@ -7,7 +7,7 @@ import AdminRoleComponent from "../../../../auth/auth-wrappers/admin-role-compon
 import { useAuth } from "../../../../auth/auth-provider/auth-provider";
 
 const UsersLoader: React.FC = observer(() => {
-  const {user} = useAuth();
+  const { user } = useAuth();
   const { users, loadAllUsers, usersLoading } = usersStore;
 
   useEffect(() => {

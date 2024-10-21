@@ -5,7 +5,7 @@ export class FinnishTranslation extends BaseTranslation {
   userManagement = "Käyttäjähallinta";
   tasks = "Tehtävät";
   password = "Salasana";
-  submit = "Lähetä"
+  submit = "Lähetä";
   email = "Sähköposti";
   passwordInputMessage = "Syötä salasanasi!";
   passwordWarningMessage = "Salasanan on oltava vähintään";
@@ -18,8 +18,15 @@ export class FinnishTranslation extends BaseTranslation {
     "Salasanassa on oltava vähintään yksi erikoismerkki!";
   submittingForgotPassword =
     "Lähetetään unohtuneen salasanan pyyntö henkilölle";
-  failedSubmitForgotPassword = "Unohtuneen salasanan pyynnön lähettäminen epäonnistui";
-  emailInputMessage= "Syötä sähköpostiosoitteesi";
-  checkYourEmail= "Tarkista sähköpostisi";
-  forgotPassword= "Unohtunut salasana";
+  failedSubmitForgotPassword =
+    "Unohtuneen salasanan pyynnön lähettäminen epäonnistui";
+  emailInputMessage = "Syötä sähköpostiosoitteesi";
+  checkYourEmail = "Tarkista sähköpostisi";
+  forgotPassword = "Unohtunut salasana";
+  failedLoginMessage = "Kirjautuminen epäonnistui. Tarkista tunnuksesi";
+  readMe = "Lue minut";
+  login = "Kirjaudu sisään";
+  cancel = "Peruuta";
+  confirmLogout = "Vahvista uloskirjautuminen";
+  confirmLogoutQuestion = "Oletko varma, että haluat kirjautua ulos";
 }

@@ -2,7 +2,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Space } from "antd";
 
 export const getColumnSearchProps = <T extends object>(
-  dataIndex: keyof T,  // Use keyof T for better typing of the dataIndex
+  dataIndex: keyof T, // Use keyof T for better typing of the dataIndex
   setSearchText: React.Dispatch<React.SetStateAction<string>>,
   setSearchedColumn: React.Dispatch<React.SetStateAction<string>>
 ) => ({
@@ -25,15 +25,27 @@ export const getColumnSearchProps = <T extends object>(
           setSelectedKeys(e.target.value ? [e.target.value] : [])
         }
         onPressEnter={() =>
-          handleSearch(selectedKeys, confirm, dataIndex as string, setSearchText, setSearchedColumn)
+          handleSearch(
+            selectedKeys,
+            confirm,
+            dataIndex as string,
+            setSearchText,
+            setSearchedColumn
+          )
         }
-        style={{ marginBottom: 8, display: 'block' }}
+        style={{ marginBottom: 8, display: "block" }}
       />
       <Space>
         <Button
           type="primary"
           onClick={() =>
-            handleSearch(selectedKeys, confirm, dataIndex as string, setSearchText, setSearchedColumn)
+            handleSearch(
+              selectedKeys,
+              confirm,
+              dataIndex as string,
+              setSearchText,
+              setSearchedColumn
+            )
           }
           icon={<SearchOutlined />}
           size="small"
@@ -52,12 +64,15 @@ export const getColumnSearchProps = <T extends object>(
     </div>
   ),
   filterIcon: (filtered: boolean) => (
-    <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
+    <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
   ),
   onFilter: (value: string | number | boolean, record: T) =>
     record[dataIndex]
-      ? record[dataIndex].toString().toLowerCase().includes(value.toString().toLowerCase())
-      : '',
+      ? record[dataIndex]
+          .toString()
+          .toLowerCase()
+          .includes(value.toString().toLowerCase())
+      : "",
 });
 
 const handleSearch = (
@@ -68,7 +83,7 @@ const handleSearch = (
   setSearchedColumn: React.Dispatch<React.SetStateAction<string>>
 ) => {
   confirm();
-  setSearchText(selectedKeys[0] ? selectedKeys[0].toString() : ''); // Update the search text
+  setSearchText(selectedKeys[0] ? selectedKeys[0].toString() : ""); // Update the search text
   setSearchedColumn(dataIndex); // Set the searched column
 };
 
@@ -79,5 +94,5 @@ const handleReset = (
 ) => {
   clearFilters();
   confirm();
-  setSearchText(''); // Reset the search text
+  setSearchText(""); // Reset the search text
 };

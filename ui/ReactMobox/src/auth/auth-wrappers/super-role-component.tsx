@@ -3,7 +3,10 @@ import { ComponentType, FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth-provider/auth-provider";
 import { isSuper } from "../auth-services/auth-service";
-import { RoutePaths, useLanguageAwareNavigate } from "../../routing/use-language-aware-navigate ";
+import {
+  RoutePaths,
+  useLanguageAwareNavigate,
+} from "../../routing/use-language-aware-navigate ";
 
 const SuperRoleComponent = <P extends object>(
   WrappedComponent: ComponentType<P>
