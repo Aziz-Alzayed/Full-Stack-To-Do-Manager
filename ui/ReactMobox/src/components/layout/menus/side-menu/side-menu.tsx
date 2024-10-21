@@ -1,6 +1,6 @@
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
-import { CSSProperties, FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../../../../auth/auth-provider/auth-provider";
 import { isAdmin, isSuper } from "../../../../auth/auth-services/auth-service";
@@ -11,6 +11,7 @@ import {
 } from "../../../../routing/use-language-aware-navigate ";
 import { useTranslation } from "react-i18next";
 import { TranslationKeys } from "../../../../localization/translations/base-translation";
+import styles from "./side-menu.module.css"
 
 export const SideMenuWidth = "13em";
 const SideMenu: FC = () => {
@@ -32,12 +33,7 @@ const SideMenu: FC = () => {
       setUserIsAdmin(false);
     }
   }, [user]);
-  const menuStyle: CSSProperties = {
-    overflowY: "auto",
-    height: "100vh",
-    position: "fixed",
-    left: 0,
-  };
+  
   const menuItems: MenuItemType[] = [
     {
       key: RoutePaths.userManagement,
@@ -53,7 +49,7 @@ const SideMenu: FC = () => {
   return !userIsAdmin ? (
     <></>
   ) : (
-    <Sider style={menuStyle} width={SideMenuWidth}>
+    <Sider className={styles.menuStyle} width={SideMenuWidth}>
       <Menu
         mode="inline"
         selectedKeys={[currentSelectedKey]}

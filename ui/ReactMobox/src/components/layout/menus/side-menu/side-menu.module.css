@@ -1,0 +1,6 @@
+.menuStyle {
+    overflow-y: auto;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+}

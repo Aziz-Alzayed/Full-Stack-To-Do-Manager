@@ -16,6 +16,8 @@ import ForgotPasswordForm from "./forget-password-form";
 import { useTranslation } from "react-i18next";
 import { TranslationKeys } from "../../localization/translations/base-translation";
 
+import styles from "./login-form.module.css";
+
 interface LoginFormProps {
   isOpen: boolean;
   onClose: () => void;
@@ -86,7 +88,10 @@ const LoginForm: FC<LoginFormProps> = ({ isOpen, onClose }) => {
               name="password"
               label={t(TranslationKeys.password)}
               rules={[
-                { required: true, message: t(TranslationKeys.passwordInputMessage) },
+                {
+                  required: true,
+                  message: t(TranslationKeys.passwordInputMessage),
+                },
               ]}
             >
               <Input.Password placeholder="Password" />
@@ -102,7 +107,7 @@ const LoginForm: FC<LoginFormProps> = ({ isOpen, onClose }) => {
                 <Form.Item>
                   <a
                     onClick={() => setIsForgotPasswordModalOpen(true)}
-                    style={{ float: "right" }}
+                    className={styles.forgetPassword}
                   >
                     {t(TranslationKeys.forgotPassword)}?
                   </a>
@@ -112,7 +117,7 @@ const LoginForm: FC<LoginFormProps> = ({ isOpen, onClose }) => {
 
             <Form.Item>
               <Button type="primary" htmlType="submit" block>
-              {t(TranslationKeys.login)}
+                {t(TranslationKeys.login)}
               </Button>
             </Form.Item>
           </Form>

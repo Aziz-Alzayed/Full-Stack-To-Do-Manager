@@ -1,0 +1,12 @@
+.contentStyle {
+    background: #fff;
+    overflow-y: auto;
+}
+
+.layoutStyle {
+    min-height: 100vh;
+}
+
+.mainContainerStyle {
+    margin-top: 4.5em;
+}

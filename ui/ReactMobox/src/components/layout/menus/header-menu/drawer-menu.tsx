@@ -4,6 +4,7 @@ import UserDropdownMenu from "./user-dropdown-menu";
 import type { DrawerStyles } from "antd/es/drawer/DrawerPanel";
 import { MenuItemType } from "antd/es/menu/interface";
 import LanguageSwitcher from "./language-switcher";
+import styles from "./drawer-menu.module.css"
 interface DrawerMenuProps {
   menuItems: MenuItemType[];
   visible: boolean;
@@ -15,8 +16,6 @@ const style = `
     border-bottom:solid
 }
 `;
-
-/*ant - menu - title - content*/
 
 export const DrawerMenu: FC<DrawerMenuProps> = ({
   menuItems,
@@ -42,7 +41,7 @@ export const DrawerMenu: FC<DrawerMenuProps> = ({
       >
         <Menu mode="inline" items={menuItems} />
         <LanguageSwitcher />
-        <UserDropdownMenu style={{ marginTop: "0.5em", paddingLeft: "2em" }} />
+        <UserDropdownMenu className={styles.userDropdownMenu} />
       </Drawer>
     </>
   );

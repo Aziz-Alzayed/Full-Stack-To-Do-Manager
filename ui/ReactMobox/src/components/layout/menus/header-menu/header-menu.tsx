@@ -1,4 +1,4 @@
-import { useState, useEffect, CSSProperties, FC } from "react";
+import { useState, useEffect, FC } from "react";
 import { Menu, Button, Space } from "antd";
 import { MenuFoldOutlined } from "@ant-design/icons"; // For the toggle button icon
 import UserDropdownMenu from "./user-dropdown-menu";
@@ -14,6 +14,7 @@ import {
 } from "../../../../routing/use-language-aware-navigate ";
 import { useTranslation } from "react-i18next";
 import { TranslationKeys } from "../../../../localization/translations/base-translation";
+import styles from "./header-menu.module.css";
 
 const HeaderMenu: FC = () => {
   const [visible, setVisible] = useState(false);
@@ -30,32 +31,6 @@ const HeaderMenu: FC = () => {
 
   // Toggle drawer visibility
   const toggleDrawer = () => setVisible(!visible);
-
-  const headerStyle: CSSProperties = {
-    padding: "0 16px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    position: "fixed",
-    zIndex: 10,
-    width: "100%",
-  };
-
-  const logoDivStyle: CSSProperties = {
-    minWidth: "182px",
-    height: "32px",
-    marginInlineEnd: "24px",
-    display: "flex", // Ensures contents are centered
-    alignItems: "center", // Vertically centers the image
-    justifyContent: "center", // Horizontally centers the image
-    cursor: "pointer",
-  };
-
-  const logoImageStyle: CSSProperties = {
-    maxWidth: "100%", // Ensures the image does not exceed the container's width
-    maxHeight: "100%", // Ensures the image does not exceed the container's height
-    objectFit: "contain", // Maintains the aspect ratio of the image
-  };
 
   const menuItems: MenuItemType[] = [
     {
@@ -77,19 +52,19 @@ const HeaderMenu: FC = () => {
 
   return (
     <>
-      <Header style={headerStyle}>
+      <Header className={styles.headerStyle}>
         <div
-          style={logoDivStyle}
+          className={styles.logoDivStyle}
           onClick={() => navigateWithLanguage(RoutePaths.home)}
         >
-          <img src={logoImage} alt="Logo" style={logoImageStyle} />
+          <img src={logoImage} alt="Logo" className={styles.logoImageStyle} />
         </div>
         {!isMobile ? (
           <>
             <Menu
               mode="horizontal"
               items={menuItems}
-              style={{ width: "85%" }}
+              className={styles.menu}
               selectedKeys={[currentSelectedKey]}
             />
             <Space>
