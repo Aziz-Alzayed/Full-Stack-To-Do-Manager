@@ -22,7 +22,7 @@ import { getColumnSearchProps } from "../../../table-helpers/table-filter-helper
 const TaskListView: React.FC = observer(() => {
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
   const [modalMode, setModalMode] = useState<"add" | "edit">("add");
-  const [currentTask, setCurrentTask] = useState<TaskModel | null>(null);
+  const [currentTask, setCurrentTask] = useState<TaskModel | undefined>(undefined);
   const [, setSearchText] = useState('');
   const [, setSearchedColumn] = useState('');
   const { tasks } = tasksStore;
@@ -49,7 +49,7 @@ const TaskListView: React.FC = observer(() => {
   };
 
   const handleAddNewTask = () => {
-    setCurrentTask(null); // Clear task for adding new
+    setCurrentTask(undefined); // Clear task for adding new
     setModalMode("add"); // Set mode to add
     setIsAddModalVisible(true); // Open modal
   };

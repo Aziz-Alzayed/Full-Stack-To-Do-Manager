@@ -13,7 +13,7 @@ const AdminRoleComponent = <P extends object>(
     const navigate = useNavigate();
     const { user } = useAuth();
     const [loading, setLoading] = useState(true); // Loading state for role check
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<string | undefined>(undefined);
     const navigateWithLanguage = useLanguageAwareNavigate();
     useEffect(() => {
       const checkRoles = async () => {

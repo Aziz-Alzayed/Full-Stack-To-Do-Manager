@@ -64,7 +64,7 @@ const HeaderMenu: FC = () => {
       key: RoutePaths.tasks,
       label: t(TranslationKeys.tasks),
       onClick: () => navigateWithLanguage(RoutePaths.tasks),
-      disabled: user === null,
+      disabled: user === undefined,
     },
   ];
 

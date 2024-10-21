@@ -17,7 +17,7 @@ export interface IUser {
 }
 
 export interface IAuthContextType {
-    user: IUserInfo | null;
+    user: IUserInfo | undefined;
     roles: string[];
     handleLogin: (loginDetails: ILoginRequest) => Promise<void>;
     handleLogout: () => void;

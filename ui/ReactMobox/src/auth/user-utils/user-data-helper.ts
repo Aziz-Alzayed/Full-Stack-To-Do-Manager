@@ -9,8 +9,8 @@ export const saveUserData = (userData: IUserInfo) => {
   ls.set(USER_KEY, userData);
 };
 
-export const getUserData = (): IUserInfo | null => {
-  return ls.get(USER_KEY) || null;
+export const getUserData = (): IUserInfo | undefined => {
+  return ls.get(USER_KEY) || undefined;
 };
 
 export const clearUserData = () => {

@@ -15,7 +15,7 @@ import { StoresResults } from "../stores-utils/stores-results";
 class AdminStore {
   userMap: Record<string, IUserFullInfos> = observable.object({});
   usersLoading: boolean = false;
-  error: string | null = null;
+  error: string | undefined = undefined;
 
   constructor() {
     makeAutoObservable(this);
@@ -32,7 +32,7 @@ class AdminStore {
 
     runInAction(() => {
       this.usersLoading = true;
-      this.error = null;
+      this.error = undefined;
     });
 
     try {
@@ -63,7 +63,7 @@ class AdminStore {
   addUser = async (userData: AddNewUserByAdmin): Promise<StoresResults> => {
     runInAction(() => {
       this.usersLoading = true;
-      this.error = null;
+      this.error = undefined;
     });
 
     try {
@@ -127,7 +127,7 @@ class AdminStore {
 
     runInAction(() => {
       this.usersLoading = true;
-      this.error = null;
+      this.error = undefined;
     });
 
     try {
@@ -181,7 +181,7 @@ class AdminStore {
 
     runInAction(() => {
       this.usersLoading = true;
-      this.error = null;
+      this.error = undefined;
     });
 
     try {

@@ -19,7 +19,7 @@ const UserDropdownMenu: FC<UserDropdownMenuProps> = ({ style }) => {
 
   const userEmail: string = user?.email || "";
 
-  const userEmailItem: MenuItemType | null = userEmail
+  const userEmailItem: MenuItemType | undefined = userEmail
     ? {
         key: "userEmailItem",
         label: `${userEmail}`,
@@ -30,28 +30,28 @@ const UserDropdownMenu: FC<UserDropdownMenuProps> = ({ style }) => {
         ),
         onClick: () => navigateWithLanguage(RoutePaths.userProfile),
       }
-    : null;
+    : undefined;
 
-  const logoutItem: MenuItemType | null = userEmail
+  const logoutItem: MenuItemType | undefined = userEmail
     ? {
         key: "logoutItem",
         label: "Logout",
         icon: <LogoutOutlined style={{ marginRight: 8 }} />,
         onClick: () => setIsLogoutModalVisible(true),
       }
-    : null;
+    : undefined;
 
-  const loginItem: MenuItemType | null = !userEmail
+  const loginItem: MenuItemType | undefined = !userEmail
     ? {
         key: "loginItem",
         label: "Login",
         icon: <LoginOutlined style={{ marginRight: 8 }} />,
         onClick: () => setIsLoginModalVisible(true),
       }
-    : null;
+    : undefined;
 
   // Helper function to add dividers only when necessary
-  const addDividerIfNeeded = (items: Array<ItemType | null>): ItemType[] => {
+  const addDividerIfNeeded = (items: Array<ItemType | undefined>): ItemType[] => {
     return items.reduce((acc: ItemType[], item, index) => {
       if (item) {
         // Add a divider before an item if it's not the first one and previous item exists

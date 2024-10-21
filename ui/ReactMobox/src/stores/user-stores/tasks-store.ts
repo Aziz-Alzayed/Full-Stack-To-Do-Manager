@@ -7,7 +7,7 @@ import { addTaskApi, deleteTaskApi, getAllTasksApi, updateTaskApi } from "../../
 class TaskStore {
   taskMap: Record<string, TaskModel> = observable.object({});
   tasksLoading: boolean = false;
-  error: string | null = null;
+  error: string | undefined = undefined;
 
   constructor() {
     makeAutoObservable(this);
@@ -26,7 +26,7 @@ class TaskStore {
 
     runInAction(() => {
       this.tasksLoading = true;
-      this.error = null;
+      this.error = undefined;
     });
 
     try {
@@ -57,7 +57,7 @@ class TaskStore {
   addTask = async (taskData: Omit<TaskModel, "id">): Promise<StoresResults> => {
     runInAction(() => {
       this.tasksLoading = true;
-      this.error = null;
+      this.error = undefined;
     });
 
     try {
@@ -114,7 +114,7 @@ class TaskStore {
 
     runInAction(() => {
       this.tasksLoading = true;
-      this.error = null;
+      this.error = undefined;
     });
 
     try {
@@ -166,7 +166,7 @@ class TaskStore {
 
     runInAction(() => {
       this.tasksLoading = true;
-      this.error = null;
+      this.error = undefined;
     });
 
     try {

@@ -50,7 +50,7 @@ type ListItemType = {
 const UserProfile: FC = () => {
   const { user, roles, updateUser } = useAuth();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [editingKey, setEditingKey] = useState<string | null>(null);
+  const [editingKey, setEditingKey] = useState<string | undefined>(undefined);
   const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] =
     useState<boolean>(false);
   const [editValues, setEditValues] = useState<EditValuesType>({
@@ -123,13 +123,13 @@ const UserProfile: FC = () => {
         `${key} has not been updated successfully, please check logs!`
       );
     } finally {
-      setEditingKey(null);
+      setEditingKey(undefined);
       setIsLoading(false);
     }
   };
 
   const onCancle = () => {
-    setEditingKey(null);
+    setEditingKey(undefined);
   };
 
   const onChange = (key: string, value: string) => {

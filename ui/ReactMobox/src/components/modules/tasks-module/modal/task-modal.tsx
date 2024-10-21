@@ -22,7 +22,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ visible, onClose, task, mode }) =
       if (task) {
         form.setFieldsValue({
           ...task,
-          validUntil: task.validUntil ? dayjs(task.validUntil) : null,
+          validUntil: task.validUntil ? dayjs(task.validUntil) : undefined,
         });
       }
     }
@@ -35,7 +35,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ visible, onClose, task, mode }) =
       .then(async (values) => {
         const newTask: TaskModel = {
           ...values,
-          validUntil: values.validUntil ? dayjs(values.validUntil).format('YYYY-MM-DD') : null,
+          validUntil: values.validUntil ? dayjs(values.validUntil).format('YYYY-MM-DD') : undefined,
           id: mode === 'edit' && task ? task.id : "", // Set id for edit, empty for new task
         };
 

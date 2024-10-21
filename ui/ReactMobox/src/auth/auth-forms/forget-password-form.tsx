@@ -60,7 +60,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
         onClose();
         setSubmitted(false);
       }}
-      footer={null}
+      footer={undefined}
     >
       {!submitted ? (
         <Form form={form} layout="vertical" onFinish={handleSubmit}>

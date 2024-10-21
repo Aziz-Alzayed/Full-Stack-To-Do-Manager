@@ -26,7 +26,7 @@ import { getUserData, saveUserData } from "../user-utils/user-data-helper";
 import { RoutePaths, useLanguageAwareNavigate } from "../../routing/use-language-aware-navigate ";
 
 export const AuthContext = createContext<IAuthContextType>({
-  user: null,
+  user: undefined,
   roles: [],
   handleLogin: async () => {
     /* default empty implementation */
@@ -48,7 +48,7 @@ export const useAuth = (): IAuthContextType => {
 const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const navigateWithLanguage = useLanguageAwareNavigate();
   const [roles, setRoles] = useState<string[]>([]);
-  const [user, setUser] = useState<IUserInfo | null>(getUserData());
+  const [user, setUser] = useState<IUserInfo | undefined>(getUserData());
 
   const updateUser = (newUserData: IUserInfo) => {
     setUser(newUserData);
@@ -65,7 +65,7 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
       if (userData) SuccessNotification("Login succeed!");
     } catch (error) {
       console.error("Failed to fetch roles after login:", error);
-      setUser(null); // Invalidate the session if roles cannot be fetched
+      setUser(undefined); // Invalidate the session if roles cannot be fetched
       setRoles([]); // Clear roles
       ErrorNotification("Login failed! Unable to fetch roles.");
     }
@@ -75,7 +75,7 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const handleLogout = async () => {
     try {
       await logout(); // Clears the auth tokens
-      setUser(null); // Reset user state
+      setUser(undefined); // Reset user state
       setRoles([]); // Reset roles state
       navigateWithLanguage(RoutePaths.home);
     } catch (error) {
@@ -99,7 +99,7 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
           setRoles(fetchedRoles); // Set roles if fetched successfully
         } catch (error) {
           console.error("Failed to fetch roles:", error);
-          setUser(null); // Invalidate the session if roles cannot be fetched
+          setUser(undefined); // Invalidate the session if roles cannot be fetched
           setRoles([]); // Clear roles
           ErrorNotification("Session invalid! Unable to fetch roles.");
           navigateWithLanguage(RoutePaths.login);

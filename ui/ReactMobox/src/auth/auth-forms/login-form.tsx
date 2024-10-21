@@ -48,7 +48,7 @@ const LoginForm: FC<LoginFormProps> = ({ isOpen, onClose }) => {
         title="Login"
         open={isOpen}
         onCancel={onClose}
-        footer={null}
+        footer={undefined}
         transitionName="zoom"
       >
         <Spin spinning={isLoading}>

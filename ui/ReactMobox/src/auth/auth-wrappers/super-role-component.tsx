@@ -12,7 +12,7 @@ const SuperRoleComponent = <P extends object>(
     const navigate = useNavigate();
     const { user } = useAuth();
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<string | undefined>(undefined);
     const navigateWithLanguage = useLanguageAwareNavigate();
 
     useEffect(() => {

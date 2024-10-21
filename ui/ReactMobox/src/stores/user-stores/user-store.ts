@@ -21,7 +21,7 @@ import { StoresResults } from "../stores-utils/stores-results";
 
 class UserStore {
   userLoading: boolean = false;
-  error: string | null = null;
+  error: string | undefined = undefined;
 
   constructor() {
     makeAutoObservable(this);
@@ -35,7 +35,7 @@ class UserStore {
 
     runInAction(() => {
       this.userLoading = true;
-      this.error = null;
+      this.error = undefined;
     });
 
     try {

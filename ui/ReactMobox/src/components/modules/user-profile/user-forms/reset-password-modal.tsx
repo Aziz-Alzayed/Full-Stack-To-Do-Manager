@@ -18,7 +18,7 @@ const ResetPasswordModal: FC<ResetPasswordModalProps> = ({
   closeResetPasswordModal,
 }) => {
   const [form] = Form.useForm();
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<string | undefined>(undefined);
 
   const onResetPassword = async (values: {
     oldPassword: string;
@@ -32,13 +32,13 @@ const ResetPasswordModal: FC<ResetPasswordModalProps> = ({
       };
       const responde = await userStore.UpdateUserPassword(requestDto);
       if (responde.passed) {
-        SuccessNotification("Passowrd has been updated succeccfuly");
+        SuccessNotification("Password has been updated succeccfuly");
       } else
-        ErrorNotification("Passowrd has not been updated!", responde.message);
+        ErrorNotification("Password has not been updated!", responde.message);
 
       // Reset form and state
       form.resetFields();
-      setSubmitError(null);
+      setSubmitError(undefined);
       closeResetPasswordModal();
     } catch{
       // Handle errors (e.g., show error message)
@@ -50,10 +50,10 @@ const ResetPasswordModal: FC<ResetPasswordModalProps> = ({
       title="Reset Password"
       open={isResetPasswordModalOpen}
       onCancel={() => {
-        setSubmitError(null);
+        setSubmitError(undefined);
         closeResetPasswordModal();
       }}
-      footer={null}
+      footer={undefined}
     >
       {submitError && <Alert message={submitError} type="error" showIcon />}
       <Form form={form} onFinish={onResetPassword}>
