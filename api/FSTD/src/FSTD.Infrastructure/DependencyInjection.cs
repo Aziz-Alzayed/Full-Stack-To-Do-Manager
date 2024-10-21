@@ -156,23 +156,15 @@ namespace FSTD.Infrastructure
             {
                 using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
                 {
-                    var configuration = serviceScope.ServiceProvider.GetRequiredService<IConfiguration>();
+                    var seedService = serviceScope.ServiceProvider.GetRequiredService<IIdentitySeedService>();
 
-                    // Check if the environment is testing
-                    var isTesting = configuration.GetValue<bool>("IsTesting");
+                    // Ensure roles are seeded
+                    seedService.SeedRoles().Wait();
 
-                    if (!isTesting) // Only seed the database if not running in test mode
-                    {
-                        var seedService = serviceScope.ServiceProvider.GetRequiredService<IIdentitySeedService>();
-
-                        // Ensure roles are seeded
-                        seedService.SeedRoles().Wait();
-
-                        // Seed users
-                        seedService.SeedSuperUser().Wait();
-                        seedService.SeedAdminUser().Wait();
-                        seedService.SeedUser().Wait();
-                    }
+                    // Seed users
+                    seedService.SeedSuperUser().Wait();
+                    seedService.SeedAdminUser().Wait();
+                    seedService.SeedUser().Wait();
                 }
             }
             catch (Exception ex)
